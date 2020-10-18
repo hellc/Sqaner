@@ -7,12 +7,29 @@
 
 import UIKit
 
+public extension Notification.Name {
+    enum Sqaner {
+        static let sessionItemsUpdate = Notification.Name(rawValue: "kNotificationSessionItemsUpdate")
+    }
+}
+
 public class Sqaner {
     static var mainStoryboard: UIStoryboard? {
         return UIStoryboard(name: "Sqaner", bundle: Bundle(for: CameraController.classForCoder()))
     }
     
+    public static var sessionItems: [SqanerItem] = [] {
+        didSet {
+            NotificationCenter.default.post(
+                name: Notification.Name.Sqaner.sessionItemsUpdate,
+                object: self.sessionItems
+            )
+        }
+    }
+    
     public static func camera(items: [SqanerItem] = [], presenter: UIViewController) {
+        self.sessionItems = items
+        
         guard let storyboard = Sqaner.mainStoryboard else { return }
         let cameraStageVC = storyboard.instantiateViewController(withIdentifier: "cameraStage")
         let presentingVC = UINavigationController(rootViewController: cameraStageVC)
@@ -22,6 +39,8 @@ public class Sqaner {
     }
     
     public static func preview(items: [SqanerItem], presenter: UIViewController, modal: Bool = false) {
+        self.sessionItems = items
+        
         guard let storyboard = Sqaner.mainStoryboard else { return }
         let previewStageVC = storyboard.instantiateViewController(withIdentifier: "previewStage")
         
@@ -52,9 +71,9 @@ public class Sqaner {
         presenter.present(presentingVC, animated: true, completion: nil)
     }
     
-    public var cameraDidStart: (() -> Void) = {}
-    public var cameraDidCancel: (() -> Void) = {}
-    public var cameraDidReshoot: (() -> Void) = {}
-    public var cameraDidShoot: ((_ item: SqanerItem) -> Void) = { _ in }
-    public var cameraDidComplete: ((_ items: [SqanerItem]) -> Void) = { _ in }
+    public static var cameraDidStart: (() -> Void) = {}
+    public static var cameraDidCancel: (() -> Void) = {}
+    public static var cameraDidReshoot: (() -> Void) = {}
+    public static var cameraDidShoot: ((_ item: SqanerItem) -> Void) = { _ in }
+    public static var cameraDidComplete: ((_ items: [SqanerItem]) -> Void) = { _ in }
 }

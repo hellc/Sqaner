@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0A128FBA860B995776AE5AA3 /* Pods_SqanerExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47D48641825C8DB65E9E5ADD /* Pods_SqanerExample.framework */; };
 		0E48326F253B1A5D00BD7DF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E48326E253B1A5D00BD7DF7 /* AppDelegate.swift */; };
-		0E483271253B1A5D00BD7DF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E483270253B1A5D00BD7DF7 /* SceneDelegate.swift */; };
 		0E483273253B1A5D00BD7DF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E483272253B1A5D00BD7DF7 /* ViewController.swift */; };
 		0E483276253B1A5D00BD7DF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E483274253B1A5D00BD7DF7 /* Main.storyboard */; };
 		0E483278253B1A5E00BD7DF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E483277253B1A5E00BD7DF7 /* Assets.xcassets */; };
@@ -19,7 +18,6 @@
 /* Begin PBXFileReference section */
 		0E48326B253B1A5D00BD7DF7 /* SqanerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SqanerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E48326E253B1A5D00BD7DF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0E483270253B1A5D00BD7DF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0E483272253B1A5D00BD7DF7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0E483275253B1A5D00BD7DF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E483277253B1A5E00BD7DF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				0E48326E253B1A5D00BD7DF7 /* AppDelegate.swift */,
-				0E483270253B1A5D00BD7DF7 /* SceneDelegate.swift */,
 				0E483272253B1A5D00BD7DF7 /* ViewController.swift */,
 				0E483274253B1A5D00BD7DF7 /* Main.storyboard */,
 				0E483277253B1A5E00BD7DF7 /* Assets.xcassets */,
@@ -80,7 +77,6 @@
 				F04E1A36FFDB75AF3D0F7677 /* Pods-SqanerExample.debug.xcconfig */,
 				52298F438FE324DAF723518D /* Pods-SqanerExample.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -208,7 +204,6 @@
 			files = (
 				0E483273253B1A5D00BD7DF7 /* ViewController.swift in Sources */,
 				0E48326F253B1A5D00BD7DF7 /* AppDelegate.swift in Sources */,
-				0E483271253B1A5D00BD7DF7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +354,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6L5U5HC92;
 				INFOPLIST_FILE = SqanerExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -379,6 +375,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6L5U5HC92;
 				INFOPLIST_FILE = SqanerExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
