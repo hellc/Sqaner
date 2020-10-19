@@ -8,11 +8,35 @@
 import UIKit
 
 public class PreviewController: UIViewController {
+    var initialPage: Int = 0
+    var rescanEnabled = false
+    
     @IBOutlet weak var imageViewer: ImageViewer!
+    
+    internal var currentItems: [SqanerItem] = [] {
+        didSet {
+            self.updateUI()
+        }
+    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.reload()
+        
+        self.navigationItem.title = ""
+        
+        if self.rescanEnabled {
+            let rescanBarButton = UIBarButtonItem(title: "Переснять", style: .plain, target: self, action: #selector(onRescanButtonTap))
+            self.navigationItem.rightBarButtonItems = [rescanBarButton]
+        } else {
+            self.navigationItem.rightBarButtonItems = []
+        }
+        
+        self.imageViewer.pageUpdated = { page in
+            self.updateUI()
+        }
+        
+        let page = self.initialPage <= self.currentItems.count ? self.initialPage : 0
+        self.reload(page: page)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -20,12 +44,29 @@ public class PreviewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     
-    private func reload() {
-        self.imageViewer.update(images: Sqaner.sessionItems.map({ $0.resultImage! }))
+    private func reload(page: Int = 0) {
+        self.imageViewer.update(images: self.currentItems.map({ $0.resultImage! }), page: page)
+        self.updateUI()
+    }
+    
+    private func updateUI() {
+        if self.imageViewer != nil {
+            let page = self.imageViewer.page
+            self.navigationItem.title = "\(page+1) из \(self.currentItems.count)"
+        }
     }
 }
 
 public extension PreviewController {
+    @objc private func onRescanButtonTap(_ sender: Any) {
+        let page = self.imageViewer.page
+        let item = self.currentItems[page]
+        Sqaner.rescan(item: item, presenter: self) { (resultItem) in
+            self.currentItems[page] = resultItem
+            self.reload(page: page)
+        }
+    }
+    
     @IBAction func onEditButtonTap(_ sender: Any) {
         Sqaner.edit(item: SqanerItem(index: 0, image: UIImage()), presenter: self)
     }
@@ -36,11 +77,11 @@ public extension PreviewController {
     
     @IBAction func onRotateButtonTap(_ sender: Any) {
         let page = self.imageViewer.page
-        let item = Sqaner.sessionItems[page]
+        let item = self.currentItems[page]
         
         if let image = item.resultImage {
             item.resultImage = image.rotate(radians: -.pi/2)
-            self.reload()
+            self.reload(page: page)
         }
     }
     
@@ -49,7 +90,6 @@ public extension PreviewController {
     
     @IBAction func onDoneButtonTap(_ sender: Any) {
         self.dismiss(animated: true) {
-            
         }
     }
 }

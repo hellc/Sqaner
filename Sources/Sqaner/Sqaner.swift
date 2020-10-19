@@ -7,42 +7,59 @@
 
 import UIKit
 
-public extension Notification.Name {
-    enum Sqaner {
-        static let sessionItemsUpdate = Notification.Name(rawValue: "kNotificationSessionItemsUpdate")
-    }
-}
-
 public class Sqaner {
     static var mainStoryboard: UIStoryboard? {
         return UIStoryboard(name: "Sqaner", bundle: Bundle(for: CameraController.classForCoder()))
     }
     
-    public static var sessionItems: [SqanerItem] = [] {
-        didSet {
-            NotificationCenter.default.post(
-                name: Notification.Name.Sqaner.sessionItemsUpdate,
-                object: self.sessionItems
-            )
-        }
-    }
-    
-    public static func camera(items: [SqanerItem] = [], presenter: UIViewController) {
-        self.sessionItems = items
+    public static func rescan(item: SqanerItem,
+                              presenter: UIViewController,
+                              completion: @escaping (_ item: SqanerItem) -> Void) {
+        guard let storyboard = Sqaner.mainStoryboard,
+              let cameraStageVC = storyboard.instantiateViewController(withIdentifier: "cameraStage")
+                as? CameraController else { return }
+        cameraStageVC.mode = .rescan(item, completion: completion)
         
-        guard let storyboard = Sqaner.mainStoryboard else { return }
-        let cameraStageVC = storyboard.instantiateViewController(withIdentifier: "cameraStage")
         let presentingVC = UINavigationController(rootViewController: cameraStageVC)
         presentingVC.modalPresentationStyle = .fullScreen
         
         presenter.present(presentingVC, animated: true, completion: nil)
     }
     
-    public static func preview(items: [SqanerItem], presenter: UIViewController, modal: Bool = false) {
-        self.sessionItems = items
+    public static func scan(presenter: UIViewController,
+                            needPreview: Bool = true,
+                            completion: @escaping (_ items: [SqanerItem]) -> Void = { _ in }) {
+        guard let storyboard = Sqaner.mainStoryboard,
+              let cameraStageVC = storyboard.instantiateViewController(withIdentifier: "cameraStage")
+                as? CameraController else { return }
         
-        guard let storyboard = Sqaner.mainStoryboard else { return }
-        let previewStageVC = storyboard.instantiateViewController(withIdentifier: "previewStage")
+        let presentingVC = UINavigationController(rootViewController: cameraStageVC)
+        presentingVC.modalPresentationStyle = .fullScreen
+        
+        if needPreview {
+            cameraStageVC.mode = .scan(completion: { (items) in
+                Sqaner.preview(items: items, rescanEnabled: true, presenter: cameraStageVC)
+            })
+        } else {
+            cameraStageVC.mode = .scan(completion: completion)
+        }
+        
+        presenter.present(presentingVC, animated: true, completion: nil)
+    }
+    
+    public static func preview(items: [SqanerItem],
+                               page: Int = 0,
+                               rescanEnabled: Bool = false,
+                               presenter: UIViewController,
+                               modal: Bool = false,
+                               completion: @escaping (_ items: [SqanerItem]) -> Void = { _ in }) {
+        guard let storyboard = Sqaner.mainStoryboard,
+              let previewStageVC = storyboard.instantiateViewController(withIdentifier: "previewStage")
+                as? PreviewController else { return }
+        
+        previewStageVC.currentItems = items
+        previewStageVC.initialPage = page
+        previewStageVC.rescanEnabled = rescanEnabled
         
         if modal {
             let presentingVC = UINavigationController(rootViewController: previewStageVC)

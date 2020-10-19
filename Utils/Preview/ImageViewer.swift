@@ -28,7 +28,7 @@ class ImageViewer: UIView {
         return self.bounds.size.width
     }
     
-    func update(images: [UIImage]) {
+    func update(images: [UIImage], page: Int = 0) {
         self.layer.masksToBounds = true
         self.images = images
         
@@ -67,15 +67,16 @@ class ImageViewer: UIView {
         
         self.addSubview(self.scrollView)
         
-        if let page = self.prevPage {
-            self.scrollView.setContentOffset(CGPoint(x: self.viewWidth * CGFloat(page), y: 0), animated: false)
-        }
+        self.prevPage = page
+        self.scrollView.setContentOffset(CGPoint(x: self.viewWidth * CGFloat(page), y: 0), animated: false)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.update(images: self.images)
+        if let page = self.prevPage {
+            self.update(images: self.images, page: page)
+        }
     }
     
     func update(page: UInt, animated: Bool) {

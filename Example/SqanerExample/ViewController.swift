@@ -15,9 +15,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
     }
-    
 
     @IBAction func onStartScanningTap(_ sender: Any) {
-        Sqaner.camera(items: [], presenter: self)
+        Sqaner.scan(presenter: self)
     }
 }

@@ -8,6 +8,8 @@
 import UIKit
 
 public class SqanerItem {
+    public var id: String?
+    
     public let index: UInt
     public var rawImage: UIImage
     public var isEdited: Bool = false
