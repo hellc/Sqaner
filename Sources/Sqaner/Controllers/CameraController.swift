@@ -57,7 +57,6 @@ public class CameraController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.prepareScan()
-        self.updateUI()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +78,8 @@ public class CameraController: UIViewController {
             name: NSNotification.Name.Sqaner.sessionItemsUpdate,
             object: nil
         )
+        
+        self.updateUI()
     }
     
     public override func viewDidLayoutSubviews() {
@@ -113,12 +114,12 @@ public class CameraController: UIViewController {
         self.rightDescView.isHidden = count < 2
         
         if count > 0 {
-            self.leftImageView.image = items.last?.cropedImage
-            self.rightImageView.image = items.last?.cropedImage
+            self.leftImageView.image = items.last?.resultImage
+            self.rightImageView.image = items.last?.resultImage
             
             if count > 1 {
                 self.rightPreImageView.isHidden = false
-                self.rightPreImageView.image = items[count - 2].cropedImage
+                self.rightPreImageView.image = items[count - 2].resultImage
                 self.rightDescLabel.text = String(count)
             } else {
                 self.rightPreImageView.isHidden = true
@@ -201,7 +202,7 @@ public extension CameraController {
     }
     
     @IBAction func onCompleteButtonTap(_ sender: Any) {
-        Sqaner.preview(items: [], presenter: self)
+        Sqaner.preview(items: Sqaner.sessionItems, presenter: self)
     }
 }
 
@@ -292,7 +293,7 @@ extension CameraController: RectangleDetectionDelegateProtocol {
             let voidBlock = {
                 self.cropedView.isHidden = false
                 self.cropedView.layer.opacity = 0
-                self.cropedImageView.image = item.cropedImage
+                self.cropedImageView.image = item.resultImage
                 
                 UIView.animate(withDuration: 0.25) {
                     self.cropedView.layer.opacity = 1
@@ -313,11 +314,11 @@ extension CameraController: RectangleDetectionDelegateProtocol {
             if let quad = quad {
                 item.quad = quad
                 item.crop { (cropedImage) in
-                    item.cropedImage = cropedImage
+                    item.resultImage = cropedImage
                     voidBlock()
                 }
             } else {
-                item.cropedImage = picture
+                item.resultImage = picture
                 voidBlock()
             }
         }

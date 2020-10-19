@@ -325,12 +325,15 @@
         <!--1 из 5-->
         <scene sceneID="Lws-mh-b6F">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kMq-cF-T3w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="previewStage" id="F8F-yA-QDO" customClass="PreviewController" customModule="Sqaner" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4FH-BV-Yqw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgs-wR-E5k" customClass="ImageViewer" customModule="Sqaner" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="686"/>
+                                <color key="backgroundColor" red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLN-ll-1cc">
                                 <rect key="frame" x="0.0" y="774" width="414" height="122"/>
                                 <subviews>
@@ -346,6 +349,13 @@
                                             <action selector="onDoneButtonTap:" destination="F8F-yA-QDO" eventType="touchUpInside" id="782-sc-3pF"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3iS-G6-qYm" userLabel="Divider">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.5"/>
+                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="xds-0u-DtJ"/>
+                                        </constraints>
+                                    </view>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vC-PC-Cwn">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -390,14 +400,20 @@
                                     <constraint firstItem="5vC-PC-Cwn" firstAttribute="leading" secondItem="WLN-ll-1cc" secondAttribute="leading" id="1M7-9o-EMf"/>
                                     <constraint firstAttribute="trailing" secondItem="5vC-PC-Cwn" secondAttribute="trailing" id="3Ho-QH-itP"/>
                                     <constraint firstItem="Yye-jT-zrt" firstAttribute="top" secondItem="GsJ-sb-27c" secondAttribute="top" id="50F-7b-dYb"/>
+                                    <constraint firstAttribute="trailing" secondItem="3iS-G6-qYm" secondAttribute="trailing" id="AqI-Cx-wwW"/>
                                     <constraint firstItem="X6J-Go-OGn" firstAttribute="trailing" secondItem="Yye-jT-zrt" secondAttribute="trailing" id="DGx-ys-B4O"/>
                                     <constraint firstItem="X6J-Go-OGn" firstAttribute="bottom" secondItem="GsJ-sb-27c" secondAttribute="bottom" id="Oc1-RU-Gu0"/>
                                     <constraint firstItem="GsJ-sb-27c" firstAttribute="top" secondItem="5vC-PC-Cwn" secondAttribute="bottom" id="OfR-Tf-sjs"/>
                                     <constraint firstItem="Yye-jT-zrt" firstAttribute="leading" secondItem="X6J-Go-OGn" secondAttribute="leading" id="Voe-C7-iz3"/>
                                     <constraint firstItem="5vC-PC-Cwn" firstAttribute="top" secondItem="WLN-ll-1cc" secondAttribute="top" id="XjQ-FR-XvT"/>
                                     <constraint firstItem="GsJ-sb-27c" firstAttribute="leading" secondItem="X6J-Go-OGn" secondAttribute="leading" id="lsj-Cy-Kmm"/>
+                                    <constraint firstItem="3iS-G6-qYm" firstAttribute="leading" secondItem="WLN-ll-1cc" secondAttribute="leading" id="rdy-3L-H6N"/>
                                     <constraint firstItem="GsJ-sb-27c" firstAttribute="trailing" secondItem="X6J-Go-OGn" secondAttribute="trailing" id="xal-CP-1Zl"/>
+                                    <constraint firstItem="3iS-G6-qYm" firstAttribute="top" secondItem="X6J-Go-OGn" secondAttribute="top" id="xcd-eI-rCn"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JhO-S8-knm"/>
@@ -406,20 +422,27 @@
                             <constraint firstAttribute="bottom" secondItem="WLN-ll-1cc" secondAttribute="bottom" id="0Vj-TN-ueC"/>
                             <constraint firstItem="WLN-ll-1cc" firstAttribute="leading" secondItem="4FH-BV-Yqw" secondAttribute="leading" id="B6W-DG-g60"/>
                             <constraint firstAttribute="trailing" secondItem="WLN-ll-1cc" secondAttribute="trailing" id="Edq-Dg-SiJ"/>
+                            <constraint firstItem="qgs-wR-E5k" firstAttribute="top" secondItem="JhO-S8-knm" secondAttribute="top" id="Odf-yC-Y61"/>
+                            <constraint firstItem="WLN-ll-1cc" firstAttribute="top" secondItem="qgs-wR-E5k" secondAttribute="bottom" id="PfD-S4-n5V"/>
+                            <constraint firstItem="JhO-S8-knm" firstAttribute="trailing" secondItem="qgs-wR-E5k" secondAttribute="trailing" id="Yzr-hZ-ggT"/>
+                            <constraint firstItem="qgs-wR-E5k" firstAttribute="leading" secondItem="JhO-S8-knm" secondAttribute="leading" id="tXJ-Bb-FNl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="1 из 5" id="ufF-d3-Ygz">
                         <barButtonItem key="backBarButtonItem" title=" " id="mM5-Je-rnR"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="imageViewer" destination="qgs-wR-E5k" id="XFc-g7-bsH"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kMq-cF-T3w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1060.8695652173915" y="59.598214285714285"/>
         </scene>
         <!-- -->
         <scene sceneID="XEU-kM-KS5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0cr-5d-qVC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="editStage" title=" " id="hnw-YD-1d0" customClass="EditController" customModule="Sqaner" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8EO-6U-dHY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -453,7 +476,7 @@
                             </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="a23-Fe-cbs"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="a23-Fe-cbs" firstAttribute="bottom" secondItem="lVa-ac-0TX" secondAttribute="bottom" id="Xxb-HD-DTY"/>
                             <constraint firstItem="lVa-ac-0TX" firstAttribute="leading" secondItem="a23-Fe-cbs" secondAttribute="leading" id="sig-rx-UoG"/>
@@ -474,13 +497,13 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0cr-5d-qVC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1830" y="60"/>
         </scene>
         <!--Crop Controller-->
         <scene sceneID="4x1-m0-BQn">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0hq-uZ-yef" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="cropStage" id="VGo-no-0Yk" customClass="CropController" customModule="Sqaner" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jgP-me-QwR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -516,6 +539,7 @@
                     <navigationItem key="navigationItem" id="o8E-Fx-Glb"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0hq-uZ-yef" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2603" y="60"/>
         </scene>
