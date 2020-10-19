@@ -167,7 +167,7 @@ public class CameraController: UIViewController {
             
             UIView.animate(withDuration: 0.5, delay: 0, options: .beginFromCurrentState, animations: {
                 self.cropedView.layer.opacity = 0
-                self.cropedImageView.transform = CGAffineTransform(translationX: endpoint.x, y: endpoint.y).scaledBy(x: 0.1, y: 0.1)
+                self.cropedImageView.transform = CGAffineTransform(translationX: endpoint.x, y: endpoint.y).scaledBy(x: 0.05, y: 0.05)
             }) { (_) in
                 self.cropedImageView.transform = .identity
                 self.cropedView.isHidden = true
@@ -196,6 +196,7 @@ public extension CameraController {
         self.shootButton.isUserInteractionEnabled = false
         self.flashToBlack()
         self.captureSessionManager?.capturePhoto()
+        self.quadView.isHidden = true
         self.hideDesc()
     }
     
@@ -287,8 +288,6 @@ extension CameraController: RectangleDetectionDelegateProtocol {
                                withQuad quad: Quadrilateral?) {
         DispatchQueue.main.async {
             let item = SqanerItem(index: self.currentIndex, image: picture)
-            
-            self.quadView.isHidden = true
             
             let voidBlock = {
                 self.cropedView.isHidden = false
