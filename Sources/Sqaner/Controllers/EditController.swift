@@ -8,10 +8,13 @@
 import UIKit
 
 public class EditController: UIViewController {
+    
+    // MARK: Overrided methods
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false

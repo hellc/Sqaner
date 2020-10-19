@@ -452,13 +452,12 @@
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Y6b-qX-2aS"/>
                                     <barButtonItem image="corner-up-left" id="bQS-P8-q5j">
                                         <connections>
                                             <action selector="onPrevButtonTap:" destination="hnw-YD-1d0" id="LA5-kz-t2v"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7sd-zj-c3l"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="dDP-xR-5LV"/>
                                     <barButtonItem image="corner-up-right" id="fI5-Iz-NZ8">
                                         <connections>
                                             <action selector="onNextButtonTap:" destination="hnw-YD-1d0" id="IRD-Se-Zat"/>
@@ -470,13 +469,12 @@
                                             <action selector="onColorButtonTap:" destination="hnw-YD-1d0" id="3tT-Br-YQI"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="LXg-qG-b8z"/>
                                 </items>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="a23-Fe-cbs"/>
-                        <color key="backgroundColor" red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.85490196078431369" green="0.85451143979999999" blue="0.87059146170000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="a23-Fe-cbs" firstAttribute="bottom" secondItem="lVa-ac-0TX" secondAttribute="bottom" id="Xxb-HD-DTY"/>
                             <constraint firstItem="lVa-ac-0TX" firstAttribute="leading" secondItem="a23-Fe-cbs" secondAttribute="leading" id="sig-rx-UoG"/>
@@ -500,48 +498,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cr-5d-qVC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1830" y="60"/>
-        </scene>
-        <!--Crop Controller-->
-        <scene sceneID="4x1-m0-BQn">
-            <objects>
-                <viewController storyboardIdentifier="cropStage" id="VGo-no-0Yk" customClass="CropController" customModule="Sqaner" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jgP-me-QwR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRh-Ef-JVy">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <barButtonItem title="Отменить" id="fTD-iR-gT6">
-                                        <connections>
-                                            <action selector="onCancelButtonTap:" destination="VGo-no-0Yk" id="E9K-s1-VL9"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TKV-gU-rJF"/>
-                                    <barButtonItem title="Готово" style="done" id="DLJ-QD-IbX">
-                                        <connections>
-                                            <action selector="onDoneButtonTap:" destination="VGo-no-0Yk" id="taY-8s-pHL"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </toolbar>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="h8G-Ai-qxw"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="XRh-Ef-JVy" firstAttribute="leading" secondItem="h8G-Ai-qxw" secondAttribute="leading" id="hB1-kI-kjb"/>
-                            <constraint firstItem="h8G-Ai-qxw" firstAttribute="bottom" secondItem="XRh-Ef-JVy" secondAttribute="bottom" id="hei-dr-fi6"/>
-                            <constraint firstAttribute="trailing" secondItem="XRh-Ef-JVy" secondAttribute="trailing" id="mwB-re-D9I"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="o8E-Fx-Glb"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0hq-uZ-yef" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2603" y="60"/>
         </scene>
     </scenes>
     <resources>

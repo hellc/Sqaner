@@ -79,13 +79,15 @@ public class Sqaner {
         presenter.present(presentingVC, animated: true, completion: nil)
     }
     
-    public static func crop(item: SqanerItem, presenter: UIViewController) {
-        guard let storyboard = Sqaner.mainStoryboard else { return }
-        let cropStageVC = storyboard.instantiateViewController(withIdentifier: "cropStage")
+    public static func crop(item: SqanerItem,
+                            presenter: UIViewController,
+                            completion: @escaping (_ item: SqanerItem) -> Void) {
+        let cropStageVC = CropController(item: item, completion: completion)
         
         let presentingVC = UINavigationController(rootViewController: cropStageVC)
         presentingVC.modalPresentationStyle = .fullScreen
-        presenter.present(presentingVC, animated: true, completion: nil)
+        
+        presenter.present(presentingVC, animated: true)
     }
     
     public static var cameraDidStart: (() -> Void) = {}

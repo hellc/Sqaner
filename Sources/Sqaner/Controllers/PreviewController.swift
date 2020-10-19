@@ -52,7 +52,7 @@ public class PreviewController: UIViewController {
     private func updateUI() {
         if self.imageViewer != nil {
             let page = self.imageViewer.page
-            self.navigationItem.title = "\(page+1) из \(self.currentItems.count)"
+            self.navigationItem.title = "\(page + 1) из \(self.currentItems.count)"
         }
     }
 }
@@ -72,7 +72,13 @@ public extension PreviewController {
     }
     
     @IBAction func onCropButtonTap(_ sender: Any) {
-        Sqaner.crop(item: SqanerItem(index: 0, image: UIImage()), presenter: self)
+        let page = self.imageViewer.page
+        let item = self.currentItems[page]
+        
+        Sqaner.crop(item: item, presenter: self) { (resultItem) in
+            self.currentItems[page] = resultItem
+            self.reload(page: page)
+        }
     }
     
     @IBAction func onRotateButtonTap(_ sender: Any) {
@@ -80,12 +86,30 @@ public extension PreviewController {
         let item = self.currentItems[page]
         
         if let image = item.resultImage {
-            item.resultImage = image.rotate(radians: -.pi/2)
-            self.reload(page: page)
+            if let rotatedImage = image.rotate(radians: -.pi/2) {
+                let newItem = SqanerItem(index: item.index, image: rotatedImage)
+                newItem.id = item.id
+                newItem.resultImage = rotatedImage
+                
+                self.currentItems[page] = newItem
+                self.reload(page: page)
+            }
         }
     }
     
     @IBAction func onDeleteButtonTap(_ sender: Any) {
+        var page = self.imageViewer.page
+        self.currentItems.remove(at: page)
+        
+        if self.currentItems.count > 0 {
+            if page > 0 {
+                page -= 1
+            }
+            self.reload(page: page)
+        } else {
+            dismiss(animated: true) {
+            }
+        }
     }
     
     @IBAction func onDoneButtonTap(_ sender: Any) {
