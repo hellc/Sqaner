@@ -77,6 +77,8 @@ public class Sqaner {
               let editStageVC = storyboard.instantiateViewController(withIdentifier: "editStage")
                 as? EditController else { return }
 
+        editStageVC.prepare(item: item, completion: completion)
+
         let presentingVC = UINavigationController(rootViewController: editStageVC)
         presentingVC.modalPresentationStyle = .fullScreen
         presenter.present(presentingVC, animated: true, completion: nil)

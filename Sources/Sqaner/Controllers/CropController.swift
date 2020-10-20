@@ -9,7 +9,6 @@ import UIKit
 import AVFoundation
 
 final class ZoomGestureController {
-
     private let image: UIImage
     private let quadView: QuadrilateralView
     private var previousPanPosition: CGPoint?
@@ -61,7 +60,6 @@ final class ZoomGestureController {
 
         self.quadView.highlightCornerAtPosition(position: closestCorner, with: zoomedImage)
     }
-
 }
 
 final class CropController: UIViewController {

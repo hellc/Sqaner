@@ -12,7 +12,6 @@ import UIKit
 }
 
 open class ImageViewerItem: UIScrollView {
-
     @objc public enum ScaleMode: Int {
         case aspectFill
         case aspectFit
@@ -179,9 +178,12 @@ open class ImageViewerItem: UIScrollView {
         self.zoomImageView!.isUserInteractionEnabled = true
         self.addSubview(self.zoomImageView!)
 
-        let tapGesture = UITapGestureRecognizer(target: self,
-                                                action: #selector(ImageViewerItem.doubleTapGestureRecognizer(_:)))
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(ImageViewerItem.doubleTapGestureRecognizer(_:))
+        )
         tapGesture.numberOfTapsRequired = 2
+
         self.zoomImageView!.addGestureRecognizer(tapGesture)
 
         self.configureImageForSize(image.size)

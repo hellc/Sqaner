@@ -71,7 +71,13 @@ public extension PreviewController {
     }
 
     @IBAction func onEditButtonTap(_ sender: Any) {
-        Sqaner.edit(item: SqanerItem(index: 0, image: UIImage()), presenter: self)
+        let page = self.imageViewer.page
+        let item = self.currentItems[page]
+
+        Sqaner.edit(item: item, presenter: self) { (resultItem) in
+            self.currentItems[page] = resultItem
+            self.reload(page: page)
+        }
     }
 
     @IBAction func onCropButtonTap(_ sender: Any) {
