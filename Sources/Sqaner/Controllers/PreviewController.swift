@@ -75,6 +75,7 @@ public extension PreviewController {
         let item = self.currentItems[page]
 
         Sqaner.edit(item: item, presenter: self) { (resultItem) in
+            resultItem.isEdited = true
             self.currentItems[page] = resultItem
             self.reload(page: page)
         }
@@ -85,6 +86,7 @@ public extension PreviewController {
         let item = self.currentItems[page]
 
         Sqaner.crop(item: item, presenter: self) { (resultItem) in
+            resultItem.isEdited = true
             self.currentItems[page] = resultItem
             self.reload(page: page)
         }
@@ -95,13 +97,18 @@ public extension PreviewController {
         let item = self.currentItems[page]
 
         if let image = item.resultImage {
-            if let rotatedImage = image.rotate(radians: -.pi/2) {
-                let newItem = SqanerItem(index: item.index, image: rotatedImage)
-                newItem.meta = item.meta
-                newItem.resultImage = rotatedImage
+            DispatchQueue.global(qos: .userInitiated).async {
+                if let rotatedImage = image.rotate(radians: -.pi/2) {
+                    let newItem = SqanerItem(index: item.index, image: rotatedImage)
+                    newItem.meta = item.meta
+                    newItem.isEdited = true
+                    newItem.resultImage = rotatedImage
 
-                self.currentItems[page] = newItem
-                self.reload(page: page)
+                    DispatchQueue.main.async {
+                        self.currentItems[page] = newItem
+                        self.reload(page: page)
+                    }
+                }
             }
         }
     }

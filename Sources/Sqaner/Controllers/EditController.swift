@@ -70,6 +70,35 @@ public class EditController: UIViewController {
         self.redoButtonItem.isEnabled = self.rectusView.undoRectangles.count > 0
         self.undoButtonItem.isEnabled = self.rectusView.rectangles.count > 0
     }
+
+    private func draw(image: UIImage,
+                      rectangles: [CGRect],
+                      completion: @escaping (_ resultImage: UIImage) -> Void) {
+        DispatchQueue.global().async {
+            let imageSize = image.size
+            let scale: CGFloat = 0
+
+            UIGraphicsBeginImageContextWithOptions(imageSize, false, scale)
+            image.draw(at: CGPoint.zero)
+
+            if let context = UIGraphicsGetCurrentContext() {
+                for rect in rectangles {
+                    context.setFillColor(rect.fillColor.cgColor)
+                    context.addRect(rect)
+                    context.drawPath(using: .fill)
+                }
+            }
+
+            let resultImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+
+            if let image = resultImage {
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+            }
+        }
+    }
 }
 
 public extension EditController {
@@ -78,8 +107,13 @@ public extension EditController {
     }
 
     @IBAction func onDoneButtonTap(_ sender: Any) {
-        self.dismiss(animated: true) {
-
+        self.draw(
+            image: self.currentItem.resultImage ?? self.currentItem.rawImage,
+            rectangles: self.rectusView.rectangles) { (resultImage) in
+            self.currentItem.rawImage = resultImage
+            self.currentItem.resultImage = resultImage
+            self.completion?(self.currentItem)
+            self.dismiss(animated: true)
         }
     }
 

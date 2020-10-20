@@ -181,9 +181,8 @@ final class CropController: UIViewController {
         self.currentItem.crop { (image) in
             self.currentItem.resultImage = image
 
-            self.dismiss(animated: true) {
-                self.completion?(self.currentItem)
-            }
+            self.completion?(self.currentItem)
+            self.dismiss(animated: true)
         }
     }
 

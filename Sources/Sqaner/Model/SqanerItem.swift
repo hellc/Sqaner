@@ -23,7 +23,7 @@ public class SqanerItem {
     }
 
     func crop(completion: @escaping (_ cropedImage: UIImage) -> Void) {
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .userInitiated).async {
             guard let quad = self.quad,
                   let ciImage = CIImage(image: self.rawImage) else {
                     return
@@ -44,7 +44,10 @@ public class SqanerItem {
             ])
 
             let croppedImage = UIImage.from(ciImage: filteredImage)
-            completion(croppedImage)
+
+            DispatchQueue.main.async {
+                completion(croppedImage)
+            }
         }
     }
 }
