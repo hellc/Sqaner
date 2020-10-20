@@ -16,46 +16,46 @@ extension CaptureSession {
             let error = ImageScannerControllerError.inputDevice
             throw error
         }
-        
+
         try device.lockForConfiguration()
-        
+
         defer {
             device.unlockForConfiguration()
         }
-        
+
         if device.isFocusPointOfInterestSupported && device.isFocusModeSupported(.autoFocus) {
             device.focusPointOfInterest = tapPoint
             device.focusMode = .autoFocus
         }
-        
+
         if device.isExposurePointOfInterestSupported, device.isExposureModeSupported(.continuousAutoExposure) {
             device.exposurePointOfInterest = tapPoint
             device.exposureMode = .continuousAutoExposure
         }
     }
-    
+
     /// Resets the camera's exposure and focus point to automatic
     func resetFocusToAuto() throws {
         guard let device = device else {
             let error = ImageScannerControllerError.inputDevice
             throw error
         }
-        
+
         try device.lockForConfiguration()
-        
+
         defer {
             device.unlockForConfiguration()
         }
-        
+
         if device.isFocusPointOfInterestSupported && device.isFocusModeSupported(.continuousAutoFocus) {
             device.focusMode = .continuousAutoFocus
         }
-        
+
         if device.isExposurePointOfInterestSupported, device.isExposureModeSupported(.continuousAutoExposure) {
             device.exposureMode = .continuousAutoExposure
         }
     }
-    
+
     /// Removes an existing focus rectangle if one exists, optionally animating the exit
     func removeFocusRectangleIfNeeded(_ focusRectangle: FocusRectangleView?, animated: Bool) {
         guard let focusRectangle = focusRectangle else { return }

@@ -8,9 +8,9 @@
 import UIKit
 
 public class EditController: UIViewController {
-    
+
     // MARK: Overrided methods
-    
+
     public override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -25,19 +25,19 @@ public extension EditController {
     @IBAction func onCancelButtonTap(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @IBAction func onDoneButtonTap(_ sender: Any) {
         self.dismiss(animated: true) {
-            
+
         }
     }
-    
+
     @IBAction func onPrevButtonTap(_ sender: Any) {
     }
-    
+
     @IBAction func onNextButtonTap(_ sender: Any) {
     }
-    
+
     @IBAction func onColorButtonTap(_ sender: Any) {
     }
 }

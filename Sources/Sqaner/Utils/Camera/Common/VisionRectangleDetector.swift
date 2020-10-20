@@ -13,7 +13,11 @@ import Foundation
 @available(iOS 11.0, *)
 enum VisionRectangleDetector {
 
-    private static func completeImageRequest(for request: VNImageRequestHandler, width: CGFloat, height: CGFloat, completion: @escaping ((Quadrilateral?) -> Void)) {
+    private static func completeImageRequest(
+        for request: VNImageRequestHandler,
+        width: CGFloat,
+        height: CGFloat,
+        completion: @escaping ((Quadrilateral?) -> Void)) {
         // Create the rectangle request, and, if found, return the biggest rectangle (else return nothing).
         let rectangleDetectionRequest: VNDetectRectanglesRequest = {
             let rectDetectRequest = VNDetectRectanglesRequest(completionHandler: { (request, error) in
@@ -24,7 +28,9 @@ enum VisionRectangleDetector {
 
                 let quads: [Quadrilateral] = results.map(Quadrilateral.init)
 
-                guard let biggest = quads.biggest() else { // This can't fail because the earlier guard protected against an empty array, but we use guard because of SwiftLint
+                guard let biggest = quads.biggest() else {
+                    // This can't fail because the earlier guard protected against an empty array,
+                    // but we use guard because of SwiftLint
                     completion(nil)
                     return
                 }
@@ -51,7 +57,7 @@ enum VisionRectangleDetector {
         }
 
     }
-	
+
     /// Detects rectangles from the given CVPixelBuffer/CVImageBuffer on iOS 11 and above.
     ///
     /// - Parameters:
@@ -65,7 +71,7 @@ enum VisionRectangleDetector {
             height: CGFloat(CVPixelBufferGetHeight(pixelBuffer)),
             completion: completion)
     }
-    
+
     /// Detects rectangles from the given image on iOS 11 and above.
     ///
     /// - Parameters:
@@ -77,8 +83,12 @@ enum VisionRectangleDetector {
             for: imageRequestHandler, width: image.extent.width,
             height: image.extent.height, completion: completion)
     }
-    
-    static func rectangle(forImage image: CIImage, orientation: CGImagePropertyOrientation, completion: @escaping ((Quadrilateral?) -> Void)) {
+
+    static func rectangle(
+        forImage image: CIImage,
+        orientation: CGImagePropertyOrientation,
+        completion: @escaping ((Quadrilateral?) -> Void)
+    ) {
         let imageRequestHandler = VNImageRequestHandler(ciImage: image, orientation: orientation, options: [:])
         let orientedImage = image.oriented(orientation)
         VisionRectangleDetector.completeImageRequest(
