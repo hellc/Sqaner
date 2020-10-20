@@ -46,7 +46,7 @@ class ImageViewer: UIView {
             let view = UIView(frame: CGRect(x: xPostion, y: 0, width: self.viewWidth, height: self.viewHeight))
             
             xPostion += self.viewWidth
-            let imageView = ImageScrollView(
+            let imageView = ImageViewerItem(
                 frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
             )
             

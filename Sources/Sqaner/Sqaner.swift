@@ -14,7 +14,7 @@ public class Sqaner {
     
     public static func rescan(item: SqanerItem,
                               presenter: UIViewController,
-                              completion: @escaping (_ item: SqanerItem) -> Void) {
+                              completion: @escaping (_ item: SqanerItem) -> Void = { _ in }) {
         guard let storyboard = Sqaner.mainStoryboard,
               let cameraStageVC = storyboard.instantiateViewController(withIdentifier: "cameraStage")
                 as? CameraController else { return }
@@ -70,9 +70,12 @@ public class Sqaner {
         }
     }
     
-    public static func edit(item: SqanerItem, presenter: UIViewController) {
-        guard let storyboard = Sqaner.mainStoryboard else { return }
-        let editStageVC = storyboard.instantiateViewController(withIdentifier: "editStage")
+    public static func edit(item: SqanerItem,
+                            presenter: UIViewController,
+                            completion: @escaping (_ item: SqanerItem) -> Void = { _ in }) {
+        guard let storyboard = Sqaner.mainStoryboard,
+              let editStageVC = storyboard.instantiateViewController(withIdentifier: "editStage")
+                as? EditController else { return }
         
         let presentingVC = UINavigationController(rootViewController: editStageVC)
         presentingVC.modalPresentationStyle = .fullScreen
