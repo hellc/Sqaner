@@ -7,28 +7,26 @@
 
 import UIKit
 
-class ImageViewer: UIView {
-    var images: [UIImage] = []
+public class ImageViewer: UIView {
+    public var images: [UIImage] = []
+    public var scrollView: UIScrollView!
+    public var pageUpdated: ((_ page: Int) -> Void)?
 
-    var scrollView: UIScrollView!
-
-    var pageUpdated: ((_ page: Int) -> Void)?
-
-    private var prevPage: Int?
-
-    var page: Int {
+    public var page: Int {
         return Int(self.scrollView.contentOffset.x / self.scrollView.frame.size.width)
     }
+    
+    private var prevPage: Int?
 
-    var viewHeight: CGFloat {
+    private var viewHeight: CGFloat {
         return self.bounds.size.height
     }
 
-    var viewWidth: CGFloat {
+    private var viewWidth: CGFloat {
         return self.bounds.size.width
     }
 
-    func update(images: [UIImage], page: Int = 0) {
+    public func update(images: [UIImage], page: Int = 0) {
         self.layer.masksToBounds = true
         self.images = images
 
@@ -71,26 +69,26 @@ class ImageViewer: UIView {
         self.scrollView.setContentOffset(CGPoint(x: self.viewWidth * CGFloat(page), y: 0), animated: false)
     }
 
-    override func layoutSubviews() {
+    public func update(page: UInt, animated: Bool) {
+        self.scrollView.setContentOffset(CGPoint(x: self.viewWidth * CGFloat(page), y: 0), animated: animated)
+    }
+
+    public func update(image: UIImage, at page: Int) {
+        self.images[page] = image
+        self.update(images: self.images)
+    }
+    
+    public override func layoutSubviews() {
         super.layoutSubviews()
 
         if let page = self.prevPage {
             self.update(images: self.images, page: page)
         }
     }
-
-    func update(page: UInt, animated: Bool) {
-        self.scrollView.setContentOffset(CGPoint(x: self.viewWidth * CGFloat(page), y: 0), animated: animated)
-    }
-
-    func update(image: UIImage, at page: Int) {
-        self.images[page] = image
-        self.update(images: self.images)
-    }
 }
 
 extension ImageViewer: UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if self.prevPage != self.page {
             self.prevPage = self.page
             self.pageUpdated?(self.page)

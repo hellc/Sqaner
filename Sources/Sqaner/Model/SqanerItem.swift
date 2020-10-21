@@ -13,16 +13,17 @@ public class SqanerItem {
     public let index: UInt
     public var rawImage: UIImage
     public var isEdited: Bool = false
-
-    var quad: Quadrilateral?
     public var resultImage: UIImage?
+
 
     public init(index: UInt, image: UIImage) {
         self.index = index
         self.rawImage = image
     }
-
-    func crop(completion: @escaping (_ cropedImage: UIImage) -> Void) {
+    
+    var quad: Quadrilateral?
+    
+    public func crop(completion: @escaping (_ cropedImage: UIImage) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
             guard let quad = self.quad,
                   let ciImage = CIImage(image: self.rawImage) else {

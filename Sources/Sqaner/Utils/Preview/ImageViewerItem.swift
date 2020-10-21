@@ -7,31 +7,31 @@
 
 import UIKit
 
-@objc protocol ImageViewerItemDelegate: UIScrollViewDelegate {
+@objc public protocol ImageViewerItemDelegate: UIScrollViewDelegate {
     func imageViewerItemDidChangeOrientation(imageViewZoom: ImageViewerItem)
 }
 
-class ImageViewerItem: UIScrollView {
-    @objc enum ScaleMode: Int {
+public class ImageViewerItem: UIScrollView {
+    @objc public enum ScaleMode: Int {
         case aspectFill
         case aspectFit
         case widthFill
         case heightFill
     }
 
-    @objc enum Offset: Int {
+    @objc public enum Offset: Int {
         case begining
         case center
     }
 
     static let kZoomInFactorFromMinWhenDoubleTap: CGFloat = 2
-
-    @objc open var imageContentMode: ScaleMode = .widthFill
-    @objc open var initialOffset: Offset = .begining
-
+    
     @objc private(set) var zoomImageView: UIImageView?
 
-    @objc open weak var imageViewerItemDelegate: ImageViewerItemDelegate?
+    @objc public var imageContentMode: ScaleMode = .widthFill
+    @objc public var initialOffset: Offset = .begining
+
+    @objc public weak var imageViewerItemDelegate: ImageViewerItemDelegate?
 
     var imageSize: CGSize = CGSize.zero
     private var pointToCenterAfterResize: CGPoint = CGPoint.zero
@@ -299,15 +299,15 @@ class ImageViewerItem: UIScrollView {
 
 extension ImageViewerItem: UIScrollViewDelegate {
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.imageViewerItemDelegate?.scrollViewDidScroll?(scrollView)
     }
 
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.imageViewerItemDelegate?.scrollViewWillBeginDragging?(scrollView)
     }
 
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                           withVelocity velocity: CGPoint,
                                           targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         self.imageViewerItemDelegate?.scrollViewWillEndDragging?(
@@ -315,44 +315,44 @@ extension ImageViewerItem: UIScrollViewDelegate {
         )
     }
 
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         self.imageViewerItemDelegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
     }
 
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         self.imageViewerItemDelegate?.scrollViewWillBeginDecelerating?(scrollView)
     }
 
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.imageViewerItemDelegate?.scrollViewDidEndDecelerating?(scrollView)
     }
 
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         self.imageViewerItemDelegate?.scrollViewDidEndScrollingAnimation?(scrollView)
     }
 
-    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+    public func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
         self.imageViewerItemDelegate?.scrollViewWillBeginZooming?(scrollView, with: view)
     }
 
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+    public func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         self.imageViewerItemDelegate?.scrollViewDidEndZooming?(scrollView, with: view, atScale: scale)
     }
 
-    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+    public func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         return false
     }
 
     @available(iOS 11.0, *)
-    func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+    public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
         self.imageViewerItemDelegate?.scrollViewDidChangeAdjustedContentInset?(scrollView)
     }
 
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.zoomImageView
     }
 
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
         self.adjustFrameToCenter()
         self.imageViewerItemDelegate?.scrollViewDidZoom?(scrollView)
     }
