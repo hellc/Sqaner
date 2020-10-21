@@ -12,21 +12,21 @@ import Vision
 
 /// A data structure representing a quadrilateral and its position.
 /// This class exists to bypass the fact that CIRectangleFeature is read-only.
-public struct Quadrilateral: Transformable {
+struct Quadrilateral: Transformable {
 
     /// A point that specifies the top left corner of the quadrilateral.
-    public var topLeft: CGPoint
+    var topLeft: CGPoint
 
     /// A point that specifies the top right corner of the quadrilateral.
-    public var topRight: CGPoint
+    var topRight: CGPoint
 
     /// A point that specifies the bottom right corner of the quadrilateral.
-    public var bottomRight: CGPoint
+    var bottomRight: CGPoint
 
     /// A point that specifies the bottom left corner of the quadrilateral.
-    public var bottomLeft: CGPoint
+    var bottomLeft: CGPoint
 
-    public var description: String {
+    var description: String {
         return "topLeft: \(topLeft), topRight: \(topRight), bottomRight: \(bottomRight), bottomLeft: \(bottomLeft)"
     }
 
@@ -230,7 +230,7 @@ extension Quadrilateral {
 }
 
 extension Quadrilateral: Equatable {
-    public static func == (lhs: Quadrilateral, rhs: Quadrilateral) -> Bool {
+    static func == (lhs: Quadrilateral, rhs: Quadrilateral) -> Bool {
         return lhs.topLeft == rhs.topLeft &&
             lhs.topRight == rhs.topRight &&
             lhs.bottomRight == rhs.bottomRight &&

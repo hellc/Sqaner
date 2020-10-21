@@ -14,7 +14,7 @@ public class SqanerItem {
     public var rawImage: UIImage
     public var isEdited: Bool = false
 
-    public var quad: Quadrilateral?
+    var quad: Quadrilateral?
     public var resultImage: UIImage?
 
     public init(index: UInt, image: UIImage) {

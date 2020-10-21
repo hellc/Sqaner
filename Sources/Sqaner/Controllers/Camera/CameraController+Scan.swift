@@ -10,8 +10,8 @@ import UIKit
 // MARK: Scan setup
 
 // swiftlint:disable multiple_closures_with_trailing_closure
-internal extension CameraController {
-    internal func prepareScan() {
+extension CameraController {
+    func prepareScan() {
         self.cropedView.isHidden = true
 
         self.captureSessionManager = CaptureSessionManager(videoPreviewLayer: self.videoPreviewLayer, delegate: self)
@@ -26,7 +26,7 @@ internal extension CameraController {
         self.setupConstraints()
     }
 
-    internal func setupConstraints() {
+    func setupConstraints() {
         var quadViewConstraints = [NSLayoutConstraint]()
 
         quadViewConstraints = [
@@ -46,7 +46,7 @@ internal extension CameraController {
         NSLayoutConstraint.activate(quadViewConstraints + blackFlashViewConstraints)
     }
 
-    internal func proceedScan() {
+    func proceedScan() {
         // Prepare UI
 
         self.shootButton.isUserInteractionEnabled = false
@@ -59,7 +59,7 @@ internal extension CameraController {
         // Then look at :didCapturePicture delegate
     }
 
-    internal func toggleFlash() {
+    func toggleFlash() {
         let state = CaptureSession.current.toggleFlash()
 
         switch state {
@@ -75,7 +75,7 @@ internal extension CameraController {
         }
     }
 
-    internal func flashToBlack() {
+    func flashToBlack() {
         self.view.bringSubviewToFront(self.blackFlashView)
         self.blackFlashView.isHidden = false
         let flashDuration = DispatchTime.now() + 0.1
@@ -84,7 +84,7 @@ internal extension CameraController {
         }
     }
 
-    @objc internal func didSessionItemsUpdate() {
+    @objc func didSessionItemsUpdate() {
         self.updateUI()
     }
 }

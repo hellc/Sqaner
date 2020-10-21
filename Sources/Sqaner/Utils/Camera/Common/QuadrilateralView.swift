@@ -42,7 +42,7 @@ final class QuadrilateralView: UIView {
     /// The quadrilateral drawn on the view.
     private(set) var quad: Quadrilateral?
 
-    public var editable = false {
+    var editable = false {
         didSet {
             cornerViews(hidden: !editable)
             quadLayer.fillColor = UIColor(red: 27/255, green: 117/255, blue: 187/255, alpha: 0.3).cgColor
@@ -55,7 +55,7 @@ final class QuadrilateralView: UIView {
     }
 
     /// Set stroke color of image rect and corner.
-    public var strokeColor: CGColor? {
+    var strokeColor: CGColor? {
         didSet {
             quadLayer.strokeColor = strokeColor
             topLeftCornerView.strokeColor = strokeColor
@@ -101,7 +101,7 @@ final class QuadrilateralView: UIView {
         commonInit()
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -130,7 +130,7 @@ final class QuadrilateralView: UIView {
         addSubview(bottomLeftCornerView)
     }
 
-    override public func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         guard quadLayer.frame != bounds else {
             return

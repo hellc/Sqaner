@@ -7,19 +7,20 @@
 
 import UIKit
 
-public class PreviewController: UIViewController {
+class PreviewController: UIViewController {
     var initialPage: Int = 0
     var rescanEnabled = false
+    var completion: ((_ items: [SqanerItem]) -> Void)?
 
     @IBOutlet weak var imageViewer: ImageViewer!
 
-    internal var currentItems: [SqanerItem] = [] {
+    var currentItems: [SqanerItem] = [] {
         didSet {
             self.updateUI()
         }
     }
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = ""
@@ -42,9 +43,19 @@ public class PreviewController: UIViewController {
         self.reload(page: page)
     }
 
-    public override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+    }
+
+    func prepare(items: [SqanerItem],
+                        initialPage: Int = 0,
+                        rescanEnabled: Bool = false,
+                        completion: @escaping (_ items: [SqanerItem]) -> Void) {
+        self.currentItems = items
+        self.initialPage = initialPage
+        self.rescanEnabled = rescanEnabled
+        self.completion = completion
     }
 
     private func reload(page: Int = 0) {
@@ -60,7 +71,7 @@ public class PreviewController: UIViewController {
     }
 }
 
-public extension PreviewController {
+extension PreviewController {
     @objc private func onRescanButtonTap(_ sender: Any) {
         let page = self.imageViewer.page
         let item = self.currentItems[page]
@@ -129,8 +140,8 @@ public extension PreviewController {
     }
 
     @IBAction func onDoneButtonTap(_ sender: Any) {
-        self.dismiss(animated: true) {
-        }
+        self.completion?(self.currentItems)
+        self.dismiss(animated: true)
     }
 }
 

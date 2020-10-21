@@ -132,7 +132,7 @@ final class CaptureSessionManager: NSObject, AVCaptureVideoDataOutputSampleBuffe
     // MARK: Capture Session Life Cycle
 
     /// Starts the camera and detecting quadrilaterals.
-    internal func start() {
+    func start() {
         let authorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
 
         switch authorizationStatus {
@@ -153,11 +153,11 @@ final class CaptureSessionManager: NSObject, AVCaptureVideoDataOutputSampleBuffe
         }
     }
 
-    internal func stop() {
+    func stop() {
         captureSession.stopRunning()
     }
 
-    internal func capturePhoto() {
+    func capturePhoto() {
         guard let connection = photoOutput.connection(with: .video), connection.isEnabled, connection.isActive else {
             let error = ImageScannerControllerError.capture
             delegate?.captureSessionManager(self, didFailWithError: error)

@@ -37,7 +37,7 @@ final class FocusRectangleView: UIView {
         })
     }
 
-    public func setBorder(color: CGColor) {
+    func setBorder(color: CGColor) {
         layer.borderColor = color
     }
 

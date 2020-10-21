@@ -7,7 +7,7 @@
 
 import UIKit
 
-internal extension ImageViewerItem {
+extension ImageViewerItem {
     @objc func display(image: UIImage, rectusView: RectusView) {
         self.display(image: image)
 

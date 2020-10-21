@@ -9,21 +9,21 @@ import UIKit
 import AVFoundation
 
 // swiftlint:disable multiple_closures_with_trailing_closure
-internal enum CameraControllerMode {
+enum CameraControllerMode {
     case scan(completion: (_ items: [SqanerItem]) -> Void)
     case rescan(_ item: SqanerItem, completion: (_ item: SqanerItem) -> Void)
 }
 
-public class CameraController: UIViewController {
-    internal var mode: CameraControllerMode!
+class CameraController: UIViewController {
+    var mode: CameraControllerMode!
 
-    internal var currentItems: [SqanerItem] = [] {
+    var currentItems: [SqanerItem] = [] {
         didSet {
             self.updateUI()
         }
     }
 
-    internal var currentIndex: UInt = 0
+    var currentIndex: UInt = 0
 
     // MARK: UI props
     @IBOutlet weak var previewView: UIView!
@@ -49,16 +49,16 @@ public class CameraController: UIViewController {
 
     // MARK: Scan props
 
-    internal let videoPreviewLayer = AVCaptureVideoPreviewLayer()
-    internal var captureSessionManager: CaptureSessionManager?
+    let videoPreviewLayer = AVCaptureVideoPreviewLayer()
+    var captureSessionManager: CaptureSessionManager?
 
     /// The view that draws the detected rectangles.
-    internal let quadView = QuadrilateralView()
+    let quadView = QuadrilateralView()
 
     /// Whether flash is enabled
-    internal var flashEnabled = false
+    var flashEnabled = false
 
-    internal let blackFlashView: UIView = {
+    let blackFlashView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(white: 1.0, alpha: 0.5)
         view.isHidden = true
@@ -68,16 +68,16 @@ public class CameraController: UIViewController {
 
     // MARK: UI helpers props
 
-    internal var descTimer: Timer?
+    var descTimer: Timer?
 
     // MARK: Overrided methods
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.prepareScan()
     }
 
-    public override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.navigationController?.isNavigationBarHidden = true
@@ -93,13 +93,13 @@ public class CameraController: UIViewController {
         self.updateUI()
     }
 
-    public override func viewDidLayoutSubviews() {
+    override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         self.videoPreviewLayer.frame = view.layer.bounds
     }
 
-    public override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         UIApplication.shared.isIdleTimerDisabled = false
@@ -114,7 +114,7 @@ public class CameraController: UIViewController {
 
 // MARK: UIActions
 
-public extension CameraController {
+extension CameraController {
     @IBAction func onCloseButtonTap(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -141,7 +141,7 @@ public extension CameraController {
 // MARK: UI updates
 
 extension CameraController {
-    internal func updateUI() {
+    func updateUI() {
         let items = self.currentItems
         let count = items.count
 
@@ -167,7 +167,7 @@ extension CameraController {
         self.showDesc(text: count == 0 ? "Наведите камеру на документ" : "Наведите на следующую страницу")
     }
 
-    internal func showDesc(text: String) {
+    func showDesc(text: String) {
         if let timer = descTimer {
             timer.invalidate()
         }
@@ -185,7 +185,7 @@ extension CameraController {
         }
     }
 
-    internal func hideDesc() {
+    func hideDesc() {
         if let timer = descTimer {
             timer.invalidate()
         }
@@ -197,7 +197,7 @@ extension CameraController {
         }
     }
 
-    internal func hideCropedImage(completion: @escaping (() -> Void)) {
+    func hideCropedImage(completion: @escaping (() -> Void)) {
         DispatchQueue.main.async {
             let endpoint = self.rightView.frame.origin
 

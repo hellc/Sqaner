@@ -94,7 +94,7 @@ extension UIAlertController {
     ///   - animated: set true to animate presentation of alert controller (default is true).
     ///   - vibrate: set true to vibrate the device while presenting the alert (default is false).
     ///   - completion: an optional completion handler to be called after presenting alert controller (default is nil).
-    public func show(animated: Bool = true,
+    func show(animated: Bool = true,
                      vibrate: Bool = false,
                      style: UIBlurEffect.Style? = nil,
                      completion: (() -> Void)? = nil) {
@@ -179,7 +179,7 @@ extension UIView {
 
 class ColorPickerViewController: UIViewController {
 
-    public typealias Selection = (UIColor) -> Swift.Void
+    typealias Selection = (UIColor) -> Swift.Void
 
     fileprivate var selection: Selection?
 
@@ -191,14 +191,14 @@ class ColorPickerViewController: UIViewController {
 
     @IBOutlet weak var mainStackView: UIStackView!
 
-    public var color: UIColor {
+    var color: UIColor {
         return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
     }
 
-    public var hue: CGFloat = 0.5
-    public var saturation: CGFloat = 0.5
-    public var brightness: CGFloat = 0.5
-    public var alpha: CGFloat = 1
+    var hue: CGFloat = 0.5
+    var saturation: CGFloat = 0.5
+    var brightness: CGFloat = 0.5
+    var alpha: CGFloat = 1
 
     fileprivate var preferredHeight: CGFloat = 0
 
@@ -293,7 +293,7 @@ extension UIColor {
 
     /// SwifterSwift: https://github.com/SwifterSwift/SwifterSwift
     /// Hexadecimal value string (read-only).
-    public var hexString: String {
+    var hexString: String {
         let components: [Int] = {
             let c = cgColor.components!
             let components = c.count == 4 ? c : [c[0], c[0], c[0], c[1]]
@@ -304,7 +304,7 @@ extension UIColor {
 
     /// SwifterSwift: https://github.com/SwifterSwift/SwifterSwift
     /// Get components of hue, saturation, and brightness, and alpha (read-only).
-    public var hsbaComponents: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
+    var hsbaComponents: (hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat) {
         var h: CGFloat = 0.0
         var s: CGFloat = 0.0
         var b: CGFloat = 0.0

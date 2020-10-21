@@ -125,7 +125,7 @@ final class CropController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(red: 218/255, green: 218/255, blue: 222/255, alpha: 1.0)
@@ -154,13 +154,13 @@ final class CropController: UIViewController {
         self.navigationController?.isToolbarHidden = false
     }
 
-    override public func viewDidLayoutSubviews() {
+    override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         adjustQuadViewConstraints()
         displayQuad()
     }
 
-    override public func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         /// Work around for an iOS 11.2 bug where UIBarButtonItems don't

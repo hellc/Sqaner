@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class EditController: UIViewController {
+class EditController: UIViewController {
     @IBOutlet weak var imageViewerItem: ImageViewerItem!
     private var rectusView: RectusView!
 
@@ -26,14 +26,14 @@ public class EditController: UIViewController {
     }
     private var completion: ((_ item: SqanerItem) -> Void)?
 
-    internal func prepare(item: SqanerItem, completion: @escaping (_ item: SqanerItem) -> Void) {
+    func prepare(item: SqanerItem, completion: @escaping (_ item: SqanerItem) -> Void) {
         self.currentItem = item
         self.completion = completion
     }
 
     // MARK: Overrided methods
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         self.currentColorView.backgroundColor = .black
@@ -60,7 +60,7 @@ public class EditController: UIViewController {
         }
     }
 
-    public override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
         self.updateUI()
@@ -101,7 +101,7 @@ public class EditController: UIViewController {
     }
 }
 
-public extension EditController {
+extension EditController {
     @IBAction func onCancelButtonTap(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

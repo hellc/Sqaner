@@ -38,13 +38,20 @@ public class Sqaner {
 
         if needPreview {
             cameraStageVC.mode = .scan(completion: { (items) in
-                Sqaner.preview(items: items, rescanEnabled: true, presenter: cameraStageVC)
+                Sqaner.preview(
+                    items: items,
+                    rescanEnabled: true,
+                    presenter: cameraStageVC,
+                    completion: completion
+                )
             })
         } else {
             cameraStageVC.mode = .scan(completion: completion)
         }
 
-        presenter.present(presentingVC, animated: true, completion: nil)
+        presenter.present(presentingVC, animated: true) {
+            Sqaner.scanDidShown()
+        }
     }
 
     public static func preview(items: [SqanerItem],
@@ -57,16 +64,19 @@ public class Sqaner {
               let previewStageVC = storyboard.instantiateViewController(withIdentifier: "previewStage")
                 as? PreviewController else { return }
 
-        previewStageVC.currentItems = items
-        previewStageVC.initialPage = page
-        previewStageVC.rescanEnabled = rescanEnabled
+        previewStageVC.prepare(items: items, initialPage: page, rescanEnabled: rescanEnabled, completion: completion)
 
         if modal {
             let presentingVC = UINavigationController(rootViewController: previewStageVC)
             presentingVC.modalPresentationStyle = .fullScreen
-            presenter.present(presentingVC, animated: true, completion: nil)
+            presenter.present(presentingVC, animated: true) {
+                Sqaner.previewDidShown()
+            }
         } else if presenter.navigationController != nil {
             presenter.show(previewStageVC, sender: self)
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
+                Sqaner.previewDidShown()
+            }
         }
     }
 
@@ -81,7 +91,10 @@ public class Sqaner {
 
         let presentingVC = UINavigationController(rootViewController: editStageVC)
         presentingVC.modalPresentationStyle = .fullScreen
-        presenter.present(presentingVC, animated: true, completion: nil)
+
+        presenter.present(presentingVC, animated: true) {
+            Sqaner.editDidShown()
+        }
     }
 
     public static func crop(item: SqanerItem,
@@ -92,7 +105,9 @@ public class Sqaner {
         let presentingVC = UINavigationController(rootViewController: cropStageVC)
         presentingVC.modalPresentationStyle = .fullScreen
 
-        presenter.present(presentingVC, animated: true)
+        presenter.present(presentingVC, animated: true) {
+            Sqaner.cropDidShown()
+        }
     }
 
     public static var cameraDidStart: (() -> Void) = {}
@@ -100,4 +115,9 @@ public class Sqaner {
     public static var cameraDidReshoot: (() -> Void) = {}
     public static var cameraDidShoot: ((_ item: SqanerItem) -> Void) = { _ in }
     public static var cameraDidComplete: ((_ items: [SqanerItem]) -> Void) = { _ in }
+
+    public static var scanDidShown: (() -> Void) = {}
+    public static var previewDidShown: (() -> Void) = {}
+    public static var editDidShown: (() -> Void) = {}
+    public static var cropDidShown: (() -> Void) = {}
 }
