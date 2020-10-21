@@ -23,7 +23,7 @@ class CameraController: UIViewController {
         }
     }
 
-    var currentIndex: UInt = 0
+    var currentIndex: Int = 0
 
     // MARK: UI props
     @IBOutlet weak var previewView: UIView!

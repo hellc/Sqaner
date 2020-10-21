@@ -16,7 +16,7 @@ public class ImageViewer: UIView {
         return Int(self.scrollView.contentOffset.x / self.scrollView.frame.size.width)
     }
     
-    private var prevPage: Int?
+    private var currentPage: Int?
 
     private var viewHeight: CGFloat {
         return self.bounds.size.height
@@ -26,7 +26,7 @@ public class ImageViewer: UIView {
         return self.bounds.size.width
     }
 
-    public func update(images: [UIImage], page: Int = 0) {
+    public func update(images: [UIImage], page initial: Int = 0) {
         self.layer.masksToBounds = true
         self.images = images
 
@@ -65,32 +65,35 @@ public class ImageViewer: UIView {
 
         self.addSubview(self.scrollView)
 
-        self.prevPage = page
-        self.scrollView.setContentOffset(CGPoint(x: self.viewWidth * CGFloat(page), y: 0), animated: false)
+        self.currentPage = initial
+        self.change(page: initial, animated: false)
     }
 
-    public func update(page: UInt, animated: Bool) {
+    public func change(page: Int, animated: Bool) {
         self.scrollView.setContentOffset(CGPoint(x: self.viewWidth * CGFloat(page), y: 0), animated: animated)
     }
 
     public func update(image: UIImage, at page: Int) {
         self.images[page] = image
-        self.update(images: self.images)
+        
+        if let currentPage = self.currentPage {
+            self.update(images: self.images, page: currentPage)
+        }
     }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
 
-        if let page = self.prevPage {
-            self.update(images: self.images, page: page)
+        if let initial = self.currentPage {
+            self.update(images: self.images, page: initial)
         }
     }
 }
 
 extension ImageViewer: UIScrollViewDelegate {
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if self.prevPage != self.page {
-            self.prevPage = self.page
+        if self.currentPage != self.page {
+            self.currentPage = self.page
             self.pageUpdated?(self.page)
         }
     }

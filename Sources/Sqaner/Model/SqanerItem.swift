@@ -10,13 +10,13 @@ import UIKit
 public class SqanerItem {
     public var meta: String?
 
-    public let index: UInt
+    public let index: Int
     public var rawImage: UIImage
     public var isEdited: Bool = false
     public var resultImage: UIImage?
 
 
-    public init(index: UInt, image: UIImage) {
+    public init(index: Int, image: UIImage) {
         self.index = index
         self.rawImage = image
     }
