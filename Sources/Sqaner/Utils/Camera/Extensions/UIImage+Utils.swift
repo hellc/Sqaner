@@ -6,7 +6,7 @@
 //  Copyright © 2018 WeTransfer. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension UIImage {
     /// Draws a new cropped and scaled (zoomed in) image.

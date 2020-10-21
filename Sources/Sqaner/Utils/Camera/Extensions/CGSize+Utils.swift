@@ -6,7 +6,7 @@
 //  Copyright © 2019 WeTransfer. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension CGSize {
     /// Calculates an appropriate scale factor which makes the size fit inside both the `maxWidth` and `maxHeight`.

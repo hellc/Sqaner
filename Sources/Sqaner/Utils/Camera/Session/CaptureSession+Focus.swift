@@ -6,7 +6,7 @@
 //  Copyright © 2018 WeTransfer. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Extension to CaptureSession that controls auto focus
 extension CaptureSession {

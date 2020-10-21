@@ -13,10 +13,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
     }
 
     @IBAction func onStartScanningTap(_ sender: Any) {
-        Sqaner.scan(presenter: self)
+        Sqaner.scan(presenter: self, needPreview: true) { (_) in
+
+        }
     }
 }

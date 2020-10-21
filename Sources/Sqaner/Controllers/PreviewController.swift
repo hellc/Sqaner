@@ -49,9 +49,9 @@ class PreviewController: UIViewController {
     }
 
     func prepare(items: [SqanerItem],
-                        initialPage: Int = 0,
-                        rescanEnabled: Bool = false,
-                        completion: @escaping (_ items: [SqanerItem]) -> Void) {
+                 initialPage: Int = 0,
+                 rescanEnabled: Bool = false,
+                 completion: @escaping (_ items: [SqanerItem]) -> Void) {
         self.currentItems = items
         self.initialPage = initialPage
         self.rescanEnabled = rescanEnabled

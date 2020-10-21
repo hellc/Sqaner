@@ -107,7 +107,7 @@ extension CameraController: RectangleDetectionDelegateProtocol {
 
             let voidBlock = {
                 if case .rescan(let reshootItem, let completion) = self.mode {
-                    var reshootItem = reshootItem
+                    let reshootItem = reshootItem
                     reshootItem.rawImage = item.rawImage
                     reshootItem.resultImage = item.resultImage
                     reshootItem.quad = item.quad

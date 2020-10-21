@@ -6,8 +6,8 @@
 //  Copyright © 2018 WeTransfer. All rights reserved.
 //
 
+import UIKit
 import CoreMotion
-import Foundation
 
 /// Extension to CaptureSession with support for automatically detecting the current orientation via CoreMotion
 /// Which works even if the user has enabled portrait lock.

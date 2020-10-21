@@ -6,7 +6,7 @@
 //  Copyright © 2018 WeTransfer. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Objects that conform to the Transformable protocol are capable of being transformed with a `CGAffineTransform`.
 protocol Transformable {

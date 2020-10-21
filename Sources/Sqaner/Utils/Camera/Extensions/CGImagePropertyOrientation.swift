@@ -6,7 +6,8 @@
 //  Copyright © 2019 WeTransfer. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
 extension CGImagePropertyOrientation {
     init(_ uiOrientation: UIImage.Orientation) {
         switch uiOrientation {

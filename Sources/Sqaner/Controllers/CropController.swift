@@ -170,11 +170,8 @@ final class CropController: UIViewController {
     }
 
     private func proceedCrop() {
-        guard let quad = self.quadView.quad,
-              let ciImage = CIImage(image: image) else { return }
+        guard let quad = self.quadView.quad else { return }
 
-        let cgOrientation = CGImagePropertyOrientation(self.image.imageOrientation)
-        let orientedImage = ciImage.oriented(forExifOrientation: Int32(cgOrientation.rawValue))
         let scaledQuad = quad.scale(quadView.bounds.size, self.image.size)
 
         self.currentItem.quad = scaledQuad

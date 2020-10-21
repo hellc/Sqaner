@@ -7,7 +7,7 @@
 //
 
 import Vision
-import Foundation
+import UIKit
 
 /// Class used to detect rectangles from an image.
 @available(iOS 11.0, *)

@@ -6,7 +6,7 @@
 //  Copyright © 2018 WeTransfer. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import AVFoundation
 
 /// Class used to detect rectangles from an image.
