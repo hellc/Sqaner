@@ -42,6 +42,13 @@ public class PreviewController: UIViewController {
 
         let page = self.initialPage <= self.currentItems.count ? self.initialPage : 0
         self.reload(page: page)
+
+        if self.navigationController?.presentingViewController != nil,
+           self.navigationController?.viewControllers.count == 1 {
+            // pushed
+        } else {
+            self.navigationItem.leftBarButtonItem = nil
+        }
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -141,6 +148,10 @@ extension PreviewController {
     @IBAction func onDoneButtonTap(_ sender: Any) {
         self.completion?(self.currentItems)
         self.dismiss(animated: true)
+    }
+
+    @IBAction func onCloseButtonTap(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

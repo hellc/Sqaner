@@ -437,6 +437,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="1 из 5" id="ufF-d3-Ygz">
                         <barButtonItem key="backBarButtonItem" title=" " id="mM5-Je-rnR"/>
+                        <barButtonItem key="leftBarButtonItem" image="close" id="kvz-tc-ZEX">
+                            <color key="tintColor" name="primary"/>
+                            <connections>
+                                <action selector="onCloseButtonTap:" destination="F8F-yA-QDO" id="NyK-v4-wYn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
