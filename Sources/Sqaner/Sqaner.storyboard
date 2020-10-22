@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -344,7 +345,9 @@
                                             <constraint firstAttribute="height" constant="44" id="kxW-lk-C8N"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <state key="normal" title="Готово"/>
+                                        <state key="normal" title="Готово">
+                                            <color key="titleColor" name="primary"/>
+                                        </state>
                                         <connections>
                                             <action selector="onDoneButtonTap:" destination="F8F-yA-QDO" eventType="touchUpInside" id="782-sc-3pF"/>
                                         </connections>
@@ -361,24 +364,28 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <items>
                                             <barButtonItem image="fill-block" id="Del-kX-7Us">
+                                                <color key="tintColor" name="primary"/>
                                                 <connections>
                                                     <action selector="onEditButtonTap:" destination="F8F-yA-QDO" id="vEe-vp-IPm"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="lpx-hl-4CL"/>
                                             <barButtonItem image="crop" id="nGM-86-XRb">
+                                                <color key="tintColor" name="primary"/>
                                                 <connections>
                                                     <action selector="onCropButtonTap:" destination="F8F-yA-QDO" id="eEz-fh-DEs"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="pL2-An-uRZ"/>
                                             <barButtonItem image="rotate-right" id="l9s-T5-9eX">
+                                                <color key="tintColor" name="primary"/>
                                                 <connections>
                                                     <action selector="onRotateButtonTap:" destination="F8F-yA-QDO" id="NV5-Wx-Zra"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="aDv-Lg-YHz"/>
                                             <barButtonItem image="trash" id="CDj-GU-A3A">
+                                                <color key="tintColor" name="primary"/>
                                                 <connections>
                                                     <action selector="onDeleteButtonTap:" destination="F8F-yA-QDO" id="xU2-Pb-jFh"/>
                                                 </connections>
@@ -454,12 +461,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <barButtonItem image="corner-up-left" id="bQS-P8-q5j">
+                                        <color key="tintColor" name="primary"/>
                                         <connections>
                                             <action selector="onPrevButtonTap:" destination="hnw-YD-1d0" id="LA5-kz-t2v"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="dDP-xR-5LV"/>
                                     <barButtonItem image="corner-up-right" id="fI5-Iz-NZ8">
+                                        <color key="tintColor" name="primary"/>
                                         <connections>
                                             <action selector="onNextButtonTap:" destination="hnw-YD-1d0" id="IRD-Se-Zat"/>
                                         </connections>
@@ -696,6 +705,9 @@
         <image name="rotate-right" width="24" height="24"/>
         <image name="shoot" width="66" height="66"/>
         <image name="trash" width="24" height="24"/>
+        <namedColor name="primary">
+            <color red="0.10588235294117647" green="0.45882352941176469" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
