@@ -113,10 +113,10 @@ final class CropController: UIViewController {
 
     // MARK: - Life Cycle
 
-    init(item: SqanerItem, rotateImage: Bool = true, completion: @escaping (_ item: SqanerItem) -> Void) {
+    init(item: SqanerItem, completion: @escaping (_ item: SqanerItem) -> Void) {
         self.currentItem = item
         self.completion = completion
-        self.image = rotateImage ? item.image.applyingPortraitOrientation() : item.image
+        self.image = item.image
         self.quad = item.quad ?? CropController.defaultQuad(forImage: item.image)
         super.init(nibName: nil, bundle: nil)
     }
