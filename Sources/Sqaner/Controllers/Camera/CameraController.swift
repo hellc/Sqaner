@@ -76,7 +76,7 @@ class CameraController: UIViewController {
         super.viewDidLoad()
         self.prepareScan()
         
-        let lineColor = UIColor(red: 218/255, green: 218/255, blue: 222/255, alpha: 1.0)
+        let lineColor = UIColor(red: 218/255, green: 218/255, blue: 222/255, alpha: 1.0).cgColor
         
         self.leftImageView.layer.borderWidth = 0.5
         self.leftImageView.layer.borderColor = lineColor
