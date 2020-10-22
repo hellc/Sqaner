@@ -25,7 +25,7 @@ public class ImageViewerItem: UIScrollView {
     }
 
     static let kZoomInFactorFromMinWhenDoubleTap: CGFloat = 2
-    
+
     @objc private(set) var zoomImageView: UIImageView?
 
     @objc public var imageContentMode: ScaleMode = .widthFill

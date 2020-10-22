@@ -75,9 +75,9 @@ class CameraController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.prepareScan()
-        
+
         let borderColor = UIColor(red: 218/255, green: 218/255, blue: 222/255, alpha: 1.0)
-        
+
         self.updateBorder(view: self.leftImageView, color: borderColor, width: 0.5)
         self.updateBorder(view: self.rightImageView, color: borderColor, width: 0.5)
         self.updateBorder(view: self.rightPreImageView, color: borderColor, width: 0.5)
@@ -117,7 +117,7 @@ class CameraController: UIViewController {
             self.toggleFlash()
         }
     }
-    
+
     private func updateBorder(view: UIView, color: UIColor, width: CGFloat) {
         view.layer.borderWidth = width
         view.layer.borderColor = color.cgColor

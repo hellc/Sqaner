@@ -14,14 +14,13 @@ public class SqanerItem {
     public var image: UIImage
     public var isEdited: Bool = false
 
-
     public init(index: Int, image: UIImage) {
         self.index = index
         self.image = image
     }
-    
+
     var quad: Quadrilateral?
-    
+
     public func crop(completion: @escaping (_ cropedImage: UIImage) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
             guard let quad = self.quad,

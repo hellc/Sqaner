@@ -14,7 +14,7 @@ public class PreviewController: UIViewController {
 
     @IBOutlet public weak var imageViewer: ImageViewer!
     @IBOutlet public weak var toolbar: UIToolbar!
-    
+
     var currentItems: [SqanerItem] = [] {
         didSet {
             self.updateUI()

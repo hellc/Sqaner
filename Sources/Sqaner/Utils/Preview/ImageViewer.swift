@@ -15,7 +15,7 @@ public class ImageViewer: UIView {
     public var page: Int {
         return Int(self.scrollView.contentOffset.x / self.scrollView.frame.size.width)
     }
-    
+
     private var currentPage: Int?
 
     private var viewHeight: CGFloat {
@@ -75,12 +75,12 @@ public class ImageViewer: UIView {
 
     public func update(image: UIImage, at page: Int) {
         self.images[page] = image
-        
+
         if let currentPage = self.currentPage {
             self.update(images: self.images, page: currentPage)
         }
     }
-    
+
     public override func layoutSubviews() {
         super.layoutSubviews()
 

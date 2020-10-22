@@ -1,0 +1,16 @@
+PODS:
+  - Sqaner (0.0.1)
+
+DEPENDENCIES:
+  - Sqaner (from `../`)
+
+EXTERNAL SOURCES:
+  Sqaner:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Sqaner: 49d8521fb0f5e1ad46f426a7e9f8a724f56214d8
+
+PODFILE CHECKSUM: 0a32a42b8b2c64e0b622d2dbb4b3f6f75eca84dd
+
+COCOAPODS: 1.9.3
