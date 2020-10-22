@@ -76,17 +76,12 @@ class CameraController: UIViewController {
         super.viewDidLoad()
         self.prepareScan()
         
-        let lineColor = UIColor(red: 218/255, green: 218/255, blue: 222/255, alpha: 1.0).cgColor
+        let borderColor = UIColor(red: 218/255, green: 218/255, blue: 222/255, alpha: 1.0)
         
-        self.leftImageView.layer.borderWidth = 0.5
-        self.leftImageView.layer.borderColor = lineColor
-        
-        self.rightImageView.layer.borderWidth = 0.5
-        self.rightImageView.layer.borderColor = lineColor
-        
-        self.rightPreImageView.layer.borderWidth = 0.5
-        self.rightPreImageView.layer.borderColor = lineColor
-        
+        self.updateBorder(view: self.leftImageView, color: borderColor, width: 0.5)
+        self.updateBorder(view: self.rightImageView, color: borderColor, width: 0.5)
+        self.updateBorder(view: self.rightPreImageView, color: borderColor, width: 0.5)
+        self.updateBorder(view: self.rightDescView, color: borderColor, width: 0.5)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -121,6 +116,11 @@ class CameraController: UIViewController {
         if device.torchMode == .on {
             self.toggleFlash()
         }
+    }
+    
+    private func updateBorder(view: UIView, color: UIColor, width: CGFloat) {
+        view.layer.borderWidth = width
+        view.layer.borderColor = color.cgColor
     }
 }
 
