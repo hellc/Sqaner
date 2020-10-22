@@ -110,6 +110,7 @@ extension EditController {
         self.draw(
             image: self.currentItem.image,
             rectangles: self.rectusView.rectangles) { (resultImage) in
+            self.currentItem.image = resultImage
             self.completion?(self.currentItem)
             self.dismiss(animated: true)
         }
