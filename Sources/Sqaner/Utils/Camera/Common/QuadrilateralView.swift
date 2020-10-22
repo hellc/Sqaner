@@ -22,7 +22,7 @@ final class QuadrilateralView: UIView {
 
     private let quadLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.strokeColor = UIColor(red: 27/255, green: 117/255, blue: 187/255, alpha: 0.5).cgColor
+        layer.strokeColor = UIColor.white.cgColor
         layer.lineWidth = 1.0
         layer.opacity = 1.0
         layer.isHidden = true
@@ -42,10 +42,18 @@ final class QuadrilateralView: UIView {
     /// The quadrilateral drawn on the view.
     private(set) var quad: Quadrilateral?
 
-    var editable = false {
+    public var editable = false {
         didSet {
             cornerViews(hidden: !editable)
-            quadLayer.fillColor = UIColor(red: 27/255, green: 117/255, blue: 187/255, alpha: 0.3).cgColor
+
+            quadLayer.fillColor = editable ?
+                UIColor(white: 0.0, alpha: 0.6).cgColor :
+                UIColor(red: 27/255, green: 117/255, blue: 187/255, alpha: 0.5).cgColor
+
+            quadLayer.strokeColor = editable ?
+                UIColor(white: 1.0, alpha: 1.0).cgColor :
+                UIColor(red: 27/255, green: 117/255, blue: 187/255, alpha: 1.0).cgColor
+
             guard let quad = quad else {
                 return
             }
@@ -55,7 +63,7 @@ final class QuadrilateralView: UIView {
     }
 
     /// Set stroke color of image rect and corner.
-    var strokeColor: CGColor? {
+    public var strokeColor: CGColor? {
         didSet {
             quadLayer.strokeColor = strokeColor
             topLeftCornerView.strokeColor = strokeColor
@@ -101,7 +109,7 @@ final class QuadrilateralView: UIView {
         commonInit()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -130,7 +138,7 @@ final class QuadrilateralView: UIView {
         addSubview(bottomLeftCornerView)
     }
 
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         guard quadLayer.frame != bounds else {
             return
@@ -147,8 +155,8 @@ final class QuadrilateralView: UIView {
     /// Draws the passed in quadrilateral.
     ///
     /// - Parameters:
-    ///   - quad: The quadrilateral to draw on the view.
-    ///   It should be in the coordinates of the current `QuadrilateralView` instance.
+    ///   - quad: The quadrilateral to draw on the view. It should be
+    ///   in the coordinates of the current `QuadrilateralView` instance.
     func drawQuadrilateral(quad: Quadrilateral, animated: Bool) {
         self.quad = quad
         drawQuad(quad, animated: animated)
@@ -218,9 +226,10 @@ final class QuadrilateralView: UIView {
         }
 
         let origin = CGPoint(
-            x: cornerView.frame.origin.x - (highlightedCornerViewSize.width - cornerViewSize.width) / 2.0,
-            y: cornerView.frame.origin.y - (highlightedCornerViewSize.height - cornerViewSize.height) / 2.0
-        )
+            x: cornerView.frame.origin.x -
+                (highlightedCornerViewSize.width - cornerViewSize.width) / 2.0,
+            y: cornerView.frame.origin.y -
+                (highlightedCornerViewSize.height - cornerViewSize.height) / 2.0)
         cornerView.frame = CGRect(origin: origin, size: highlightedCornerViewSize)
         cornerView.highlightWithImage(image)
     }
@@ -256,8 +265,7 @@ final class QuadrilateralView: UIView {
     ///   - view: The view which should include the point.
     /// - Returns: A new point which is within the passed in view.
     private func validPoint(_ point: CGPoint,
-                            forCornerViewOfSize cornerViewSize: CGSize,
-                            inView view: UIView) -> CGPoint {
+                            forCornerViewOfSize cornerViewSize: CGSize, inView view: UIView) -> CGPoint {
         var validPoint = point
 
         if point.x > view.bounds.width {

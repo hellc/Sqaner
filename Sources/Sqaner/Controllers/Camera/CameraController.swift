@@ -74,6 +74,7 @@ class CameraController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.prepareScan()
 
         let borderColor = UIColor(red: 218/255, green: 218/255, blue: 222/255, alpha: 1.0)
