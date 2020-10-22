@@ -106,6 +106,8 @@ extension CameraController: RectangleDetectionDelegateProtocol {
             let item = SqanerItem(index: self.currentIndex, image: picture)
 
             let voidBlock = {
+                item.quad = nil
+                
                 if case .rescan(let reshootItem, let completion) = self.mode {
                     let reshootItem = reshootItem
                     reshootItem.image = item.image
@@ -139,6 +141,7 @@ extension CameraController: RectangleDetectionDelegateProtocol {
                 item.quad = quad
                 item.crop { (cropedImage) in
                     item.image = cropedImage
+                    item.quad = nil
                     voidBlock()
                 }
             } else {
