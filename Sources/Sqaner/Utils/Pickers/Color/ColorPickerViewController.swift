@@ -26,6 +26,24 @@ extension UIAlertController {
         }
     }
 
+    /// Add a Color Picker
+    ///
+    /// - Parameters:
+    ///   - color: input color
+    ///   - action: for selected color
+    func addPalleteColorPicker(selected index: Int,
+                               selection: PalletePickerViewController.Selection?) {
+
+        guard let storyboard = Sqaner.mainStoryboard,
+              let vc = storyboard.instantiateViewController(withIdentifier: "palletePicker")
+                as? PalletePickerViewController else { return }
+        set(vc: vc)
+
+        set(title: "Выбор цвета", font: .systemFont(ofSize: 13), color: .gray)
+
+        vc.set(selected: index, selection: selection)
+    }
+
     /// Set alert's title, font and color
     ///
     /// - Parameters:

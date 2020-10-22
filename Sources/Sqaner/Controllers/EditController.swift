@@ -10,6 +10,11 @@ import UIKit
 public class EditController: UIViewController {
     private var rectusView: RectusView!
 
+    var defaultColor: UIColor {
+        return UIColor(red: 151 / 255, green: 160 / 255, blue: 175 / 255, alpha: 1.0)
+    }
+    var currentSelectedColor: Int = 2
+
     @IBOutlet public weak var imageViewerItem: ImageViewerItem!
     @IBOutlet public weak var currentColorView: UIView!
 
@@ -36,7 +41,7 @@ public class EditController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.currentColorView.backgroundColor = .black
+        self.currentColorView.backgroundColor = self.defaultColor
 
         self.imageViewerItem.setup()
         self.imageViewerItem.imageContentMode = .aspectFit
@@ -45,6 +50,7 @@ public class EditController: UIViewController {
         self.imageViewerItem.layer.masksToBounds = true
 
         self.rectusView = RectusView(frame: CGRect.zero)
+        self.rectusView.fillColor = self.defaultColor
         self.imageViewerItem.display(image: self.image, rectusView: self.rectusView)
 
         self.rectusView.didAddNewRectangle = { _ in
@@ -126,15 +132,23 @@ extension EditController {
 
     @IBAction func onColorButtonTap(_ sender: Any) {
         let alert = UIAlertController(style: .actionSheet)
-        var currentColor = self.rectusView.fillColor
 
-        alert.addColorPicker(color: self.rectusView.fillColor) { color in
-            currentColor = color
+//        alert.addColorPicker(color: self.rectusView.fillColor) { color in
+//            currentColor = color
+//        }
+
+        alert.addPalleteColorPicker(selected: self.currentSelectedColor) { (color, newIndex) in
+
+            self.currentSelectedColor = newIndex
+            self.rectusView.fillColor = color
+            self.currentColorView.backgroundColor = color
+
+            alert.dismiss(animated: true)
         }
-        alert.addAction(title: "ОК", style: .cancel) { (_) in
-            self.rectusView.fillColor = currentColor
-            self.currentColorView.backgroundColor = self.rectusView.fillColor
+
+        alert.addAction(title: "Отмена", style: .cancel) { (_) in
         }
+
         self.present(alert, animated: true, completion: nil)
     }
 }

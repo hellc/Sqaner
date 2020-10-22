@@ -595,7 +595,7 @@
                                         <rect key="frame" x="0.0" y="158" width="350" height="148"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5t-Ld-GRQ" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="350" height="36"/>
+                                                <rect key="frame" x="-2" y="-4" width="354" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="oxm-Yz-QkL"/>
                                                 </constraints>
@@ -615,7 +615,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwW-5e-OyR" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="56" width="350" height="36"/>
+                                                <rect key="frame" x="-2" y="52" width="354" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="Ole-nN-4sn"/>
                                                 </constraints>
@@ -636,7 +636,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-Eq-7RL" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="112" width="350" height="36"/>
+                                                <rect key="frame" x="-2" y="108" width="354" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="fVR-T7-DTb"/>
                                                 </constraints>
@@ -684,7 +684,254 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ibE-eB-fCl" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2665" y="60"/>
+            <point key="canvasLocation" x="2663.768115942029" y="59.598214285714285"/>
+        </scene>
+        <!--Pallete Picker View Controller-->
+        <scene sceneID="u68-n7-Abx">
+            <objects>
+                <viewController storyboardIdentifier="palletePicker" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ixh-9D-EIA" customClass="PalletePickerViewController" customModule="Sqaner" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UwD-rh-BE7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMV-7w-OjC">
+                                <rect key="frame" x="32" y="20" width="350" height="120"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ljA-Lx-cUH">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PO7-6d-ceO">
+                                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="IUh-jW-X3k"/>
+                                                    <constraint firstAttribute="width" constant="48" id="Vdp-nl-N8i"/>
+                                                </constraints>
+                                                <state key="selected" image="checkmark-round-light"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSharedButtonTap:" destination="ixh-9D-EIA" eventType="touchUpInside" id="bdo-8e-53e"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRj-jO-m2L">
+                                                <rect key="frame" x="75.5" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" red="0.090196078431372548" green="0.16862745098039217" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="p9I-Tl-QG8"/>
+                                                    <constraint firstAttribute="height" constant="48" id="pzn-R1-TrR"/>
+                                                </constraints>
+                                                <state key="selected" image="checkmark-round-light"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSharedButtonTap:" destination="ixh-9D-EIA" eventType="touchUpInside" id="7sQ-kH-nwU"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAR-tp-Lkc">
+                                                <rect key="frame" x="151" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" red="0.59215686274509804" green="0.62745098039215685" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="PsE-Mg-PIW"/>
+                                                    <constraint firstAttribute="height" constant="48" id="orN-Ks-kLn"/>
+                                                </constraints>
+                                                <state key="selected" image="checkmark-round"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSharedButtonTap:" destination="ixh-9D-EIA" eventType="touchUpInside" id="HL7-VY-PYU"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WVx-yY-eVN">
+                                                <rect key="frame" x="226.5" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="GMK-zI-eH0"/>
+                                                    <constraint firstAttribute="width" constant="48" id="sK0-v9-6Yr"/>
+                                                </constraints>
+                                                <state key="selected" image="checkmark-round"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSharedButtonTap:" destination="ixh-9D-EIA" eventType="touchUpInside" id="oh5-QC-7CL"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEX-wn-tae">
+                                                <rect key="frame" x="302" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" red="0.0" green="0.55294117647058827" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="N8H-yr-zt8"/>
+                                                    <constraint firstAttribute="height" constant="48" id="SyN-aJ-nbM"/>
+                                                </constraints>
+                                                <state key="selected" image="checkmark-round"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSharedButtonTap:" destination="ixh-9D-EIA" eventType="touchUpInside" id="w0r-7e-rhJ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="TtZ-ut-r3a"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TrK-JA-A72">
+                                        <rect key="frame" x="0.0" y="72" width="350" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ru3-2b-RaR">
+                                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" red="0.25098039215686274" green="0.19607843137254902" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="0kt-gz-veD"/>
+                                                    <constraint firstAttribute="height" constant="48" id="q5a-41-SNq"/>
+                                                </constraints>
+                                                <state key="selected" image="checkmark-round"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSharedButtonTap:" destination="ixh-9D-EIA" eventType="touchUpInside" id="xBp-CY-X7A"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kxr-5m-y9P">
+                                                <rect key="frame" x="75.5" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" red="0.027450980392156862" green="0.27843137254901962" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="MMN-h8-BHf"/>
+                                                    <constraint firstAttribute="height" constant="48" id="Q7y-6Y-vdD"/>
+                                                </constraints>
+                                                <state key="selected" image="checkmark-round"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSharedButtonTap:" destination="ixh-9D-EIA" eventType="touchUpInside" id="Ojz-5U-bnt"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Urn-F9-SJq">
+                                                <rect key="frame" x="151" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="InN-g0-baE"/>
+                                                    <constraint firstAttribute="height" constant="48" id="aFb-T1-T5f"/>
+                                                </constraints>
+                                                <state key="selected" image="checkmark-round"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSharedButtonTap:" destination="ixh-9D-EIA" eventType="touchUpInside" id="RmA-1n-59c"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="8" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8m-Ra-WNh">
+                                                <rect key="frame" x="226.5" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="1TW-8p-0Ag"/>
+                                                    <constraint firstAttribute="height" constant="48" id="XUb-Pq-NLj"/>
+                                                </constraints>
+                                                <state key="selected" image="checkmark-round"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSharedButtonTap:" destination="ixh-9D-EIA" eventType="touchUpInside" id="nwL-uA-NNW"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="9" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zf6-BC-jkO">
+                                                <rect key="frame" x="302" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" red="0.74901960784313726" green="0.14901960784313725" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="RNR-qf-3jm"/>
+                                                    <constraint firstAttribute="height" constant="48" id="uqF-kW-oW3"/>
+                                                </constraints>
+                                                <state key="selected" image="checkmark-round"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSharedButtonTap:" destination="ixh-9D-EIA" eventType="touchUpInside" id="We6-9A-ei0"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="Uk2-Q6-HMz"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="TrK-JA-A72" secondAttribute="bottom" id="5Mw-dN-AAD"/>
+                                    <constraint firstAttribute="trailing" secondItem="TrK-JA-A72" secondAttribute="trailing" id="WJ6-NZ-4mb"/>
+                                    <constraint firstAttribute="height" constant="120" id="bOQ-K1-W9v"/>
+                                    <constraint firstItem="ljA-Lx-cUH" firstAttribute="leading" secondItem="cMV-7w-OjC" secondAttribute="leading" id="fG7-i8-wFY"/>
+                                    <constraint firstAttribute="trailing" secondItem="ljA-Lx-cUH" secondAttribute="trailing" id="iKg-DS-XP4"/>
+                                    <constraint firstItem="TrK-JA-A72" firstAttribute="leading" secondItem="cMV-7w-OjC" secondAttribute="leading" id="ico-NK-Lrf"/>
+                                    <constraint firstItem="ljA-Lx-cUH" firstAttribute="top" secondItem="cMV-7w-OjC" secondAttribute="top" id="wNQ-pr-HLa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9xW-KE-K5d"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cMV-7w-OjC" firstAttribute="leading" secondItem="UwD-rh-BE7" secondAttribute="leading" constant="32" id="9wa-em-WZv"/>
+                            <constraint firstItem="cMV-7w-OjC" firstAttribute="top" secondItem="UwD-rh-BE7" secondAttribute="top" constant="20" id="DZs-fF-BRM"/>
+                            <constraint firstItem="9xW-KE-K5d" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cMV-7w-OjC" secondAttribute="bottom" constant="10" id="JvE-v4-6gG"/>
+                            <constraint firstAttribute="trailing" secondItem="cMV-7w-OjC" secondAttribute="trailing" constant="32" id="Uae-O7-G1h"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="palleteView" destination="cMV-7w-OjC" id="NrC-NZ-Pcx"/>
+                        <outletCollection property="sharedButtons" destination="PO7-6d-ceO" collectionClass="NSMutableArray" id="VLn-nL-Q71"/>
+                        <outletCollection property="sharedButtons" destination="hRj-jO-m2L" collectionClass="NSMutableArray" id="0Cv-0z-hqf"/>
+                        <outletCollection property="sharedButtons" destination="YAR-tp-Lkc" collectionClass="NSMutableArray" id="wQh-SY-sj7"/>
+                        <outletCollection property="sharedButtons" destination="WVx-yY-eVN" collectionClass="NSMutableArray" id="XAv-a7-rrS"/>
+                        <outletCollection property="sharedButtons" destination="Ru3-2b-RaR" collectionClass="NSMutableArray" id="Hjp-fr-WgW"/>
+                        <outletCollection property="sharedButtons" destination="kxr-5m-y9P" collectionClass="NSMutableArray" id="RO0-gg-wSY"/>
+                        <outletCollection property="sharedButtons" destination="Urn-F9-SJq" collectionClass="NSMutableArray" id="zc8-NF-QqU"/>
+                        <outletCollection property="sharedButtons" destination="N8m-Ra-WNh" collectionClass="NSMutableArray" id="oNs-f7-jLp"/>
+                        <outletCollection property="sharedButtons" destination="zf6-BC-jkO" collectionClass="NSMutableArray" id="Dhi-OY-HTE"/>
+                        <outletCollection property="sharedButtons" destination="vEX-wn-tae" collectionClass="NSMutableArray" id="xls-UT-dcw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cb0-8s-h7q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3382.608695652174" y="59.598214285714285"/>
         </scene>
     </scenes>
     <designables>
@@ -702,6 +949,8 @@
         <image name="angle-right" width="24" height="24"/>
         <image name="bolt" width="24" height="24"/>
         <image name="bolt-off" width="24" height="24"/>
+        <image name="checkmark-round" width="32" height="32"/>
+        <image name="checkmark-round-light" width="32" height="32"/>
         <image name="close" width="24" height="24"/>
         <image name="color" width="25" height="24"/>
         <image name="corner-up-left" width="24" height="24"/>
@@ -712,7 +961,7 @@
         <image name="shoot" width="66" height="66"/>
         <image name="trash" width="24" height="24"/>
         <namedColor name="primary">
-            <color red="0.10588235294117647" green="0.45882352941176469" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.10599999874830246" green="0.45899999141693115" blue="0.73299998044967651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
