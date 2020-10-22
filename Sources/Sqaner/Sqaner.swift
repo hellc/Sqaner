@@ -50,7 +50,7 @@ public class Sqaner {
         }
 
         presenter.present(presentingVC, animated: true) {
-            Sqaner.scanDidShown()
+            Sqaner.scanDidShown(cameraStageVC)
         }
     }
 
@@ -70,12 +70,12 @@ public class Sqaner {
             let presentingVC = UINavigationController(rootViewController: previewStageVC)
             presentingVC.modalPresentationStyle = .fullScreen
             presenter.present(presentingVC, animated: true) {
-                Sqaner.previewDidShown()
+                Sqaner.previewDidShown(previewStageVC)
             }
         } else if presenter.navigationController != nil {
             presenter.show(previewStageVC, sender: self)
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
-                Sqaner.previewDidShown()
+                Sqaner.previewDidShown(previewStageVC)
             }
         }
     }
@@ -93,7 +93,7 @@ public class Sqaner {
         presentingVC.modalPresentationStyle = .fullScreen
 
         presenter.present(presentingVC, animated: true) {
-            Sqaner.editDidShown()
+            Sqaner.editDidShown(editStageVC)
         }
     }
 
@@ -106,7 +106,7 @@ public class Sqaner {
         presentingVC.modalPresentationStyle = .fullScreen
 
         presenter.present(presentingVC, animated: true) {
-            Sqaner.cropDidShown()
+            Sqaner.cropDidShown(cropStageVC)
         }
     }
 
@@ -116,8 +116,8 @@ public class Sqaner {
     public static var cameraDidShoot: ((_ item: SqanerItem) -> Void) = { _ in }
     public static var cameraDidComplete: ((_ items: [SqanerItem]) -> Void) = { _ in }
 
-    public static var scanDidShown: (() -> Void) = {}
-    public static var previewDidShown: (() -> Void) = {}
-    public static var editDidShown: (() -> Void) = {}
-    public static var cropDidShown: (() -> Void) = {}
+    public static var scanDidShown: ((_ controller: UIViewController) -> Void) = { _ in }
+    public static var previewDidShown: ((_ controller: UIViewController) -> Void) = { _ in }
+    public static var editDidShown: ((_ controller: UIViewController) -> Void) = { _ in }
+    public static var cropDidShown: ((_ controller: UIViewController) -> Void) = { _ in }
 }

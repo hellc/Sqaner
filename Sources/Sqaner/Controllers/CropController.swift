@@ -116,8 +116,8 @@ final class CropController: UIViewController {
     init(item: SqanerItem, rotateImage: Bool = true, completion: @escaping (_ item: SqanerItem) -> Void) {
         self.currentItem = item
         self.completion = completion
-        self.image = rotateImage ? item.rawImage.applyingPortraitOrientation() : item.rawImage
-        self.quad = item.quad ?? CropController.defaultQuad(forImage: item.rawImage)
+        self.image = rotateImage ? item.image.applyingPortraitOrientation() : item.image
+        self.quad = item.quad ?? CropController.defaultQuad(forImage: item.image)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -176,7 +176,7 @@ final class CropController: UIViewController {
 
         self.currentItem.quad = scaledQuad
         self.currentItem.crop { (image) in
-            self.currentItem.resultImage = image
+            self.currentItem.image = image
 
             self.completion?(self.currentItem)
             self.dismiss(animated: true)

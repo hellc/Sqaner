@@ -7,21 +7,21 @@
 
 import UIKit
 
-class EditController: UIViewController {
-    @IBOutlet weak var imageViewerItem: ImageViewerItem!
+public class EditController: UIViewController {
     private var rectusView: RectusView!
 
-    @IBOutlet weak var currentColorView: UIView!
+    @IBOutlet public weak var imageViewerItem: ImageViewerItem!
+    @IBOutlet public weak var currentColorView: UIView!
 
-    @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var undoButtonItem: UIBarButtonItem!
-    @IBOutlet weak var redoButtonItem: UIBarButtonItem!
-    @IBOutlet weak var colorButtonItem: UIBarButtonItem!
+    @IBOutlet public weak var toolbar: UIToolbar!
+    @IBOutlet public weak var undoButtonItem: UIBarButtonItem!
+    @IBOutlet public weak var redoButtonItem: UIBarButtonItem!
+    @IBOutlet public weak var colorButtonItem: UIBarButtonItem!
 
     private var image: UIImage!
     private var currentItem: SqanerItem! {
         didSet {
-            self.image = currentItem.resultImage ?? currentItem.rawImage
+            self.image = currentItem.image
         }
     }
     private var completion: ((_ item: SqanerItem) -> Void)?
@@ -33,7 +33,7 @@ class EditController: UIViewController {
 
     // MARK: Overrided methods
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         self.currentColorView.backgroundColor = .black
@@ -60,7 +60,7 @@ class EditController: UIViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
         self.updateUI()
@@ -108,10 +108,8 @@ extension EditController {
 
     @IBAction func onDoneButtonTap(_ sender: Any) {
         self.draw(
-            image: self.currentItem.resultImage ?? self.currentItem.rawImage,
+            image: self.currentItem.image,
             rectangles: self.rectusView.rectangles) { (resultImage) in
-            self.currentItem.rawImage = resultImage
-            self.currentItem.resultImage = resultImage
             self.completion?(self.currentItem)
             self.dismiss(animated: true)
         }

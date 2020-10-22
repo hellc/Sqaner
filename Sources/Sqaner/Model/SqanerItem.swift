@@ -11,14 +11,13 @@ public class SqanerItem {
     public var meta: String?
 
     public let index: Int
-    public var rawImage: UIImage
+    public var image: UIImage
     public var isEdited: Bool = false
-    public var resultImage: UIImage?
 
 
     public init(index: Int, image: UIImage) {
         self.index = index
-        self.rawImage = image
+        self.image = image
     }
     
     var quad: Quadrilateral?
@@ -26,15 +25,15 @@ public class SqanerItem {
     public func crop(completion: @escaping (_ cropedImage: UIImage) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
             guard let quad = self.quad,
-                  let ciImage = CIImage(image: self.rawImage) else {
+                  let ciImage = CIImage(image: self.image) else {
                     return
             }
 
-            let cgOrientation = CGImagePropertyOrientation(self.rawImage.imageOrientation)
+            let cgOrientation = CGImagePropertyOrientation(self.image.imageOrientation)
             let orientedImage = ciImage.oriented(forExifOrientation: Int32(cgOrientation.rawValue))
 
             // Cropped Image
-            var cartesianScaledQuad = quad.toCartesian(withHeight: self.rawImage.size.height)
+            var cartesianScaledQuad = quad.toCartesian(withHeight: self.image.size.height)
             cartesianScaledQuad.reorganize()
 
             let filteredImage = orientedImage.applyingFilter("CIPerspectiveCorrection", parameters: [

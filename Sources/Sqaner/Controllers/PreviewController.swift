@@ -7,20 +7,21 @@
 
 import UIKit
 
-class PreviewController: UIViewController {
+public class PreviewController: UIViewController {
     var initialPage: Int = 0
     var rescanEnabled = false
     var completion: ((_ items: [SqanerItem]) -> Void)?
 
-    @IBOutlet weak var imageViewer: ImageViewer!
-
+    @IBOutlet public weak var imageViewer: ImageViewer!
+    @IBOutlet public weak var toolbar: UIToolbar!
+    
     var currentItems: [SqanerItem] = [] {
         didSet {
             self.updateUI()
         }
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = ""
@@ -43,7 +44,7 @@ class PreviewController: UIViewController {
         self.reload(page: page)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
@@ -59,7 +60,7 @@ class PreviewController: UIViewController {
     }
 
     private func reload(page: Int = 0) {
-        self.imageViewer.update(images: self.currentItems.map({ $0.resultImage! }), page: page)
+        self.imageViewer.update(images: self.currentItems.map({ $0.image }), page: page)
         self.updateUI()
     }
 
@@ -107,18 +108,16 @@ extension PreviewController {
         let page = self.imageViewer.page
         let item = self.currentItems[page]
 
-        if let image = item.resultImage {
-            DispatchQueue.global(qos: .userInitiated).async {
-                if let rotatedImage = image.rotate(radians: -.pi/2) {
-                    let newItem = SqanerItem(index: item.index, image: rotatedImage)
-                    newItem.meta = item.meta
-                    newItem.isEdited = true
-                    newItem.resultImage = rotatedImage
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let rotatedImage = item.image.rotate(radians: -.pi/2) {
+                let newItem = SqanerItem(index: item.index, image: rotatedImage)
+                newItem.meta = item.meta
+                newItem.isEdited = true
+                newItem.image = rotatedImage
 
-                    DispatchQueue.main.async {
-                        self.currentItems[page] = newItem
-                        self.reload(page: page)
-                    }
+                DispatchQueue.main.async {
+                    self.currentItems[page] = newItem
+                    self.reload(page: page)
                 }
             }
         }

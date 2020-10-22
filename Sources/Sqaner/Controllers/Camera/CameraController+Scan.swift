@@ -108,8 +108,7 @@ extension CameraController: RectangleDetectionDelegateProtocol {
             let voidBlock = {
                 if case .rescan(let reshootItem, let completion) = self.mode {
                     let reshootItem = reshootItem
-                    reshootItem.rawImage = item.rawImage
-                    reshootItem.resultImage = item.resultImage
+                    reshootItem.image = item.image
                     reshootItem.quad = item.quad
                     self.dismiss(animated: true) {
                         completion(reshootItem)
@@ -117,7 +116,7 @@ extension CameraController: RectangleDetectionDelegateProtocol {
                 } else {
                     self.cropedView.isHidden = false
                     self.cropedView.layer.opacity = 0
-                    self.cropedImageView.image = item.resultImage
+                    self.cropedImageView.image = item.image
 
                     UIView.animate(withDuration: 0.25) {
                         self.cropedView.layer.opacity = 1
@@ -139,11 +138,11 @@ extension CameraController: RectangleDetectionDelegateProtocol {
             if let quad = quad {
                 item.quad = quad
                 item.crop { (cropedImage) in
-                    item.resultImage = cropedImage
+                    item.image = cropedImage
                     voidBlock()
                 }
             } else {
-                item.resultImage = picture
+                item.image = picture
                 voidBlock()
             }
         }

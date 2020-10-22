@@ -151,12 +151,12 @@ extension CameraController {
         self.rightDescView.isHidden = count < 2
 
         if count > 0 {
-            self.leftImageView.image = items.last?.resultImage
-            self.rightImageView.image = items.last?.resultImage
+            self.leftImageView.image = items.last?.image
+            self.rightImageView.image = items.last?.image
 
             if count > 1 {
                 self.rightPreImageView.isHidden = false
-                self.rightPreImageView.image = items[count - 2].resultImage
+                self.rightPreImageView.image = items[count - 2].image
                 self.rightDescLabel.text = String(count)
             } else {
                 self.rightPreImageView.isHidden = true
