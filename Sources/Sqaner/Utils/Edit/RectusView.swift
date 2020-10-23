@@ -68,37 +68,39 @@ class RectusView: UIView {
     }
 
     override func draw(_ rect: CGRect) {
-        let con = UIGraphicsGetCurrentContext()!
-        con.setStrokeColor(UIColor.clear.cgColor)
-        con.setFillColor(self.fillColor.cgColor)
-
-        //user is still drawing
-        if self.tempPointStart.x != self.tempPointEnd.x || self.tempPointStart.y != self.tempPointEnd.y {
-            for rect in rectangles {
-                con.addRect(rect)
-                con.setFillColor(rect.fillColor.cgColor)
-                con.fill(rect)
-            }
-
-            let rect = CGRect(
-                x: self.tempPointStart.x,
-                y: self.tempPointStart.y,
-                width: self.tempPointEnd.x - self.tempPointStart.x,
-                height: self.tempPointEnd.y - self.tempPointStart.y
-            )
-
-            con.addRect(rect)
+        do {
+            guard let con = UIGraphicsGetCurrentContext() else { return }
+            con.setStrokeColor(UIColor.clear.cgColor)
             con.setFillColor(self.fillColor.cgColor)
-            con.fill(rect)
-        } else {
-            for rect in self.rectangles {
-                con.addRect(rect)
-                con.setFillColor(rect.fillColor.cgColor)
-                con.fill(rect)
-            }
-        }
 
-        con.strokePath()
+            //user is still drawing
+            if self.tempPointStart.x != self.tempPointEnd.x || self.tempPointStart.y != self.tempPointEnd.y {
+                for rect in self.rectangles {
+                    con.addRect(rect)
+                    con.setFillColor(rect.fillColor.cgColor)
+                    con.fill(rect)
+                }
+
+                let rect = CGRect(
+                    x: self.tempPointStart.x,
+                    y: self.tempPointStart.y,
+                    width: self.tempPointEnd.x - self.tempPointStart.x,
+                    height: self.tempPointEnd.y - self.tempPointStart.y
+                )
+
+                con.addRect(rect)
+                con.setFillColor(self.fillColor.cgColor)
+                con.fill(rect)
+            } else {
+                for rect in self.rectangles {
+                    con.addRect(rect)
+                    con.setFillColor(rect.fillColor.cgColor)
+                    con.fill(rect)
+                }
+            }
+
+            con.strokePath()
+        }
     }
 
     @objc private func pan(_ panGestureRecognizer: UIGestureRecognizer) {

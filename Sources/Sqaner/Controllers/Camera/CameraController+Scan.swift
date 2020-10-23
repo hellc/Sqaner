@@ -103,6 +103,7 @@ extension CameraController: RectangleDetectionDelegateProtocol {
                                didCapturePicture picture: UIImage,
                                withQuad quad: Quadrilateral?) {
         DispatchQueue.main.async {
+            let picture = picture.resize(targetSize: CGSize(width: 2000, height: 2000))
             let item = SqanerItem(index: self.currentIndex, image: picture)
 
             let voidBlock = {
