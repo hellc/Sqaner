@@ -117,21 +117,16 @@ extension CameraController: RectangleDetectionDelegateProtocol {
                     }
                 } else {
                     self.cropedView.isHidden = false
-                    self.cropedView.layer.opacity = 0
+                    self.cropedView.layer.opacity = 1
                     self.cropedImageView.image = item.image
 
-                    UIView.animate(withDuration: 0.25) {
-                        self.cropedView.layer.opacity = 1
-                    } completion: { (_) in
-                        DispatchQueue.global().async {
-                            sleep(1)
-                            self.hideCropedImage {
-                                self.currentItems.append(item)
-                                Sqaner.cameraDidShoot(item)
-                                self.shootButton.isUserInteractionEnabled = true
-                                self.quadView.isHidden = false
-                                self.captureSessionManager?.start()
-                            }
+                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
+                        self.hideCropedImage {
+                            self.currentItems.append(item)
+                            Sqaner.cameraDidShoot(item)
+                            self.shootButton.isUserInteractionEnabled = true
+                            self.quadView.isHidden = false
+                            self.captureSessionManager?.start()
                         }
                     }
                 }

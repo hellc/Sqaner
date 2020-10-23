@@ -211,18 +211,16 @@ extension CameraController {
     }
 
     func hideCropedImage(completion: @escaping (() -> Void)) {
-        DispatchQueue.main.async {
-            let endpoint = self.rightView.frame.origin
+        let endpoint = self.rightView.frame.origin
 
-            UIView.animate(withDuration: 0.5, delay: 0, options: .beginFromCurrentState, animations: {
-                self.cropedView.layer.opacity = 0
-                self.cropedImageView.transform =
-                    CGAffineTransform(translationX: endpoint.x, y: endpoint.y).scaledBy(x: 0.05, y: 0.05)
-            }) { (_) in
-                self.cropedImageView.transform = .identity
-                self.cropedView.isHidden = true
-                completion()
-            }
+        UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState, animations: {
+            self.cropedView.layer.opacity = 0
+            self.cropedImageView.transform =
+                CGAffineTransform(translationX: endpoint.x, y: endpoint.y).scaledBy(x: 0.05, y: 0.05)
+        }) { (_) in
+            self.cropedImageView.transform = .identity
+            self.cropedView.isHidden = true
+            completion()
         }
     }
 }
