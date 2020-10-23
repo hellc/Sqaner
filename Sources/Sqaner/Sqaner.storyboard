@@ -595,7 +595,7 @@
                                         <rect key="frame" x="0.0" y="158" width="350" height="148"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5t-Ld-GRQ" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="350" height="36"/>
+                                                <rect key="frame" x="-2" y="-4" width="354" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="oxm-Yz-QkL"/>
                                                 </constraints>
@@ -615,7 +615,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwW-5e-OyR" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="56" width="350" height="36"/>
+                                                <rect key="frame" x="-2" y="52" width="354" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="Ole-nN-4sn"/>
                                                 </constraints>
@@ -636,7 +636,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-Eq-7RL" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="112" width="350" height="36"/>
+                                                <rect key="frame" x="-2" y="108" width="354" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="fVR-T7-DTb"/>
                                                 </constraints>
@@ -738,7 +738,7 @@
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAR-tp-Lkc">
                                                 <rect key="frame" x="151" y="0.0" width="48" height="48"/>
-                                                <color key="backgroundColor" red="0.59215686274509804" green="0.62745098039215685" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.59215686274509804" green="0.62745098039215685" blue="0.68627450980392157" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="48" id="PsE-Mg-PIW"/>
                                                     <constraint firstAttribute="height" constant="48" id="orN-Ks-kLn"/>
