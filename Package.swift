@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Sqaner",
     platforms: [
-            .iOS("10.0")
+            .iOS("11.2")
         ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.

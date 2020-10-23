@@ -125,7 +125,7 @@ extension CameraController: RectangleDetectionDelegateProtocol {
                         self.cropedView.layer.opacity = 1
                     } completion: { (_) in
                         DispatchQueue.global().async {
-                            sleep(2)
+                            sleep(UInt32(1.25))
                             self.hideCropedImage {
                                 self.currentItems.append(item)
                                 Sqaner.cameraDidShoot(item)
