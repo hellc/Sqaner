@@ -82,7 +82,7 @@ public class EditController: UIViewController {
                       completion: @escaping (_ resultImage: UIImage) -> Void) {
         DispatchQueue.global().async {
             let imageSize = image.size
-            let scale: CGFloat = 0
+            let scale: CGFloat = 1
 
             UIGraphicsBeginImageContextWithOptions(imageSize, false, scale)
             image.draw(at: CGPoint.zero)

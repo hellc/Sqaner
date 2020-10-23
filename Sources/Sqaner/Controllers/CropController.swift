@@ -117,7 +117,8 @@ final class CropController: UIViewController {
         self.currentItem = item
         self.completion = completion
         self.image = item.image
-        self.quad = item.quad ?? CropController.defaultQuad(forImage: item.image)
+        self.quad = CropController.defaultQuad(forImage: self.image)
+        //item.quad ?? CropController.defaultQuad(forImage: item.image)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -177,6 +178,7 @@ final class CropController: UIViewController {
         self.currentItem.quad = scaledQuad
         self.currentItem.crop { (image) in
             self.currentItem.image = image
+            self.currentItem.quad = nil
 
             self.completion?(self.currentItem)
             self.dismiss(animated: true)

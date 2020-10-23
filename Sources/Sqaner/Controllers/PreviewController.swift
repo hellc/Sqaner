@@ -83,7 +83,9 @@ extension PreviewController {
     @objc private func onRescanButtonTap(_ sender: Any) {
         let page = self.imageViewer.page
         let item = self.currentItems[page]
+
         Sqaner.rescan(item: item, presenter: self) { (resultItem) in
+            resultItem.quad = nil
             self.currentItems[page] = resultItem
             self.reload(page: page)
         }
@@ -94,6 +96,7 @@ extension PreviewController {
         let item = self.currentItems[page]
 
         Sqaner.edit(item: item, presenter: self) { (resultItem) in
+            resultItem.quad = nil
             resultItem.isEdited = true
             self.currentItems[page] = resultItem
             self.reload(page: page)
@@ -106,6 +109,7 @@ extension PreviewController {
 
         Sqaner.crop(item: item, presenter: self) { (resultItem) in
             resultItem.isEdited = true
+            resultItem.quad = nil
             self.currentItems[page] = resultItem
             self.reload(page: page)
         }

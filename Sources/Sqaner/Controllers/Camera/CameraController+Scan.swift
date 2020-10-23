@@ -103,7 +103,6 @@ extension CameraController: RectangleDetectionDelegateProtocol {
                                didCapturePicture picture: UIImage,
                                withQuad quad: Quadrilateral?) {
         DispatchQueue.main.async {
-            let picture = picture.resize(targetSize: CGSize(width: 2000, height: 2000))
             let item = SqanerItem(index: self.currentIndex, image: picture)
 
             let voidBlock = {
@@ -125,7 +124,7 @@ extension CameraController: RectangleDetectionDelegateProtocol {
                         self.cropedView.layer.opacity = 1
                     } completion: { (_) in
                         DispatchQueue.global().async {
-                            sleep(UInt32(1.25))
+                            sleep(1)
                             self.hideCropedImage {
                                 self.currentItems.append(item)
                                 Sqaner.cameraDidShoot(item)
@@ -141,7 +140,8 @@ extension CameraController: RectangleDetectionDelegateProtocol {
             if let quad = quad {
                 item.quad = quad
                 item.crop { (cropedImage) in
-                    item.image = cropedImage
+                    let image = cropedImage.resize(targetSize: CGSize(width: 2000, height: 2000))
+                    item.image = image
                     item.quad = nil
                     voidBlock()
                 }
