@@ -47,10 +47,17 @@ class CameraController: UIViewController {
     @IBOutlet var rightDescView: UIView!
     @IBOutlet var rightDescLabel: UILabel!
 
+    @IBOutlet var thumbnailsView: UIView!
+    @IBOutlet var thumbnailsWidth: NSLayoutConstraint!
+
     // MARK: Scan props
 
     let videoPreviewLayer = AVCaptureVideoPreviewLayer()
     var captureSessionManager: CaptureSessionManager?
+
+    // MARK: Thumbnail props
+
+    var maxThumbnails = 5
 
     /// The view that draws the detected rectangles.
     let quadView = QuadrilateralView()
@@ -76,6 +83,7 @@ class CameraController: UIViewController {
         super.viewDidLoad()
 
         self.prepareScan()
+        self.prepareThumbnails()
 
         let borderColor = UIColor(red: 218/255, green: 218/255, blue: 222/255, alpha: 1.0)
 
@@ -138,6 +146,7 @@ extension CameraController {
 
     @IBAction func onReshootButtonTap(_ sender: Any) {
         self.currentItems.removeLast()
+        self.removeThumbnail()
     }
 
     @IBAction func onShootButtonTap(_ sender: Any) {
@@ -211,12 +220,23 @@ extension CameraController {
     }
 
     func hideCropedImage(completion: @escaping (() -> Void)) {
-        let endpoint = self.rightView.frame.origin
 
-        UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState, animations: {
-            self.cropedView.layer.opacity = 0
+        let transformFrame = self.nextThumbnailFrame()
+
+        var translationX = (self.cropedImageView.frame.width - transformFrame.width)/2.0
+        var translationY = (self.cropedImageView.frame.height - transformFrame.height)/2.0
+
+        translationX += self.cropedImageView.frame.origin.x
+        translationY += self.cropedImageView.frame.origin.y
+
+        let endpoint = CGPoint(x: transformFrame.origin.x - translationX, y: transformFrame.origin.y - translationY)
+
+        let scaleX = transformFrame.width/self.cropedImageView.frame.width
+        let scaleY = transformFrame.height/self.cropedImageView.frame.height
+
+        UIView.animate(withDuration: 0.5, delay: 0, options: .beginFromCurrentState, animations: {
             self.cropedImageView.transform =
-                CGAffineTransform(translationX: endpoint.x, y: endpoint.y).scaledBy(x: 0.05, y: 0.05)
+                CGAffineTransform(translationX: endpoint.x, y: endpoint.y).scaledBy(x: scaleX, y: scaleY)
         }) { (_) in
             self.cropedImageView.transform = .identity
             self.cropedView.isHidden = true

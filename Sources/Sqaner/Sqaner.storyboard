@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -61,15 +61,25 @@
                                             <action selector="onFlashButtonTap:" destination="exO-qv-uBS" eventType="touchUpInside" id="lMR-D7-Eu9"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPj-sO-EBG">
+                                        <rect key="frame" x="189" y="4" width="36" height="36"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="0fD-XX-v8w"/>
+                                            <constraint firstAttribute="width" constant="36" id="k7E-aT-OaA"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="CKu-ji-2QV"/>
+                                    <constraint firstItem="mPj-sO-EBG" firstAttribute="centerX" secondItem="pxx-np-Dzt" secondAttribute="centerX" id="D2Q-4K-g5N"/>
                                     <constraint firstItem="Ao3-lf-Sh1" firstAttribute="top" secondItem="pxx-np-Dzt" secondAttribute="top" id="JFJ-D4-cON"/>
                                     <constraint firstItem="pv3-GL-at1" firstAttribute="top" secondItem="pxx-np-Dzt" secondAttribute="top" id="JSi-io-qi6"/>
                                     <constraint firstAttribute="bottom" secondItem="Ao3-lf-Sh1" secondAttribute="bottom" id="QwC-Ic-7Ek"/>
                                     <constraint firstItem="pv3-GL-at1" firstAttribute="leading" secondItem="pxx-np-Dzt" secondAttribute="leading" id="rr9-fn-cGT"/>
                                     <constraint firstAttribute="trailing" secondItem="Ao3-lf-Sh1" secondAttribute="trailing" id="ux5-Ko-uMP"/>
+                                    <constraint firstItem="mPj-sO-EBG" firstAttribute="top" secondItem="pxx-np-Dzt" secondAttribute="top" constant="4" id="vqt-BF-IF5"/>
                                     <constraint firstAttribute="bottom" secondItem="pv3-GL-at1" secondAttribute="bottom" id="zGP-mf-pN0"/>
                                 </constraints>
                             </view>
@@ -317,6 +327,8 @@
                         <outlet property="rightPreImageView" destination="XtF-8L-zyL" id="AzK-h8-TVK"/>
                         <outlet property="rightView" destination="fK9-WO-xfY" id="ByG-hR-wTP"/>
                         <outlet property="shootButton" destination="KI3-oz-niK" id="I82-pj-JaP"/>
+                        <outlet property="thumbnailsView" destination="mPj-sO-EBG" id="Ink-DN-wSI"/>
+                        <outlet property="thumbnailsWidth" destination="k7E-aT-OaA" id="qD7-yM-2z8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bo3-Ir-ej2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -595,7 +607,7 @@
                                         <rect key="frame" x="0.0" y="158" width="350" height="148"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5t-Ld-GRQ" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="-2" y="-4" width="354" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="oxm-Yz-QkL"/>
                                                 </constraints>
@@ -615,7 +627,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwW-5e-OyR" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="-2" y="52" width="354" height="44"/>
+                                                <rect key="frame" x="0.0" y="56" width="350" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="Ole-nN-4sn"/>
                                                 </constraints>
@@ -636,7 +648,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-Eq-7RL" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="-2" y="108" width="354" height="44"/>
+                                                <rect key="frame" x="0.0" y="112" width="350" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="fVR-T7-DTb"/>
                                                 </constraints>

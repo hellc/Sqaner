@@ -120,13 +120,15 @@ extension CameraController: RectangleDetectionDelegateProtocol {
                     self.cropedView.layer.opacity = 1
                     self.cropedImageView.image = item.image
 
-                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
+                    Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { (_) in
+                        self.updateWidthThumbnails()
                         self.hideCropedImage {
                             self.currentItems.append(item)
                             Sqaner.cameraDidShoot(item)
                             self.shootButton.isUserInteractionEnabled = true
                             self.quadView.isHidden = false
                             self.captureSessionManager?.start()
+                            self.addThumbnail(item.image)
                         }
                     }
                 }
