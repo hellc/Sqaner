@@ -38,14 +38,9 @@ class CameraController: UIViewController {
     @IBOutlet var descView: UIView!
     @IBOutlet var descLabel: UILabel!
 
-    @IBOutlet var leftView: UIView!
-    @IBOutlet var leftImageView: UIImageView!
+    @IBOutlet var reshootButton: UIButton!
 
-    @IBOutlet var rightView: UIView!
-    @IBOutlet var rightPreImageView: UIImageView!
-    @IBOutlet var rightImageView: UIImageView!
-    @IBOutlet var rightDescView: UIView!
-    @IBOutlet var rightDescLabel: UILabel!
+    @IBOutlet var completeButton: UIButton!
 
     @IBOutlet var thumbnailsView: UIView!
     @IBOutlet var thumbnailsWidth: NSLayoutConstraint!
@@ -85,12 +80,6 @@ class CameraController: UIViewController {
         self.prepareScan()
         self.prepareThumbnails()
 
-        let borderColor = UIColor(red: 218/255, green: 218/255, blue: 222/255, alpha: 1.0)
-
-        self.updateBorder(view: self.leftImageView, color: borderColor, width: 0.5)
-        self.updateBorder(view: self.rightImageView, color: borderColor, width: 0.5)
-        self.updateBorder(view: self.rightPreImageView, color: borderColor, width: 0.5)
-        self.updateBorder(view: self.rightDescView, color: borderColor, width: 0.5)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -167,23 +156,10 @@ extension CameraController {
         let items = self.currentItems
         let count = items.count
 
-        self.leftView.isHidden = count == 0
-        self.rightView.isHidden = count == 0
+        self.reshootButton.isHidden = count == 0
+        self.completeButton.isHidden = count == 0
         self.descView.isHidden = count == 0
-        self.rightDescView.isHidden = count < 2
 
-        if count > 0 {
-            self.leftImageView.image = items.last?.image
-            self.rightImageView.image = items.last?.image
-
-            if count > 1 {
-                self.rightPreImageView.isHidden = false
-                self.rightPreImageView.image = items[count - 2].image
-                self.rightDescLabel.text = String(count)
-            } else {
-                self.rightPreImageView.isHidden = true
-            }
-        }
         self.view.layoutIfNeeded()
 
         self.showDesc(text: count == 0 ? "Наведите камеру на документ" : "Наведите на следующую страницу")
