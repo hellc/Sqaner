@@ -33,32 +33,55 @@ extension CameraController {
 
         let thumbnailsX = (self.view.frame.width - thumbnailsWidth)/2.0
 
-        return CGRect(x: thumbnailsX + xImageView, y: thumbnailsFrame.origin.y, width: 36, height: 36)
+        return CGRect(x: thumbnailsX, y: thumbnailsFrame.origin.y, width: 36, height: 36)
     }
 
     func updateWidthThumbnails() {
 
-        let diff = self.currentItems.count - self.maxThumbnails
+        var thumbnailCount = self.currentItems.count
+        if thumbnailCount > self.maxThumbnails - 1 {
+            thumbnailCount = self.maxThumbnails - 1
+        }
 
-        if diff < 0 {
+        let xImageView = CGFloat(thumbnailCount * 40)
+        self.thumbnailsWidth.constant = xImageView + 36
 
-            let xImageView = CGFloat(self.currentItems.count * 40)
-            self.thumbnailsWidth.constant = xImageView + 36
-
-            UIView.animate(withDuration: 0.5) {
-                self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.5) {
+            self.thumbnailsView.subviews.forEach {
+                if ($0 as? UILabel) == nil {
+                    if $0.tag + self.maxThumbnails > self.currentItems.count + 1 {
+                        var frame = $0.frame
+                        frame.origin.x += 40
+                        $0.frame = frame
+                    } else {
+                        $0.layer.opacity = 0
+                    }
+                }
             }
-
+            self.view.layoutIfNeeded()
         }
     }
 
     func addThumbnail(_ image: UIImage?) {
 
-        let diff = self.currentItems.count - self.maxThumbnails
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+        imageView.layer.cornerRadius = 6
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.tag = self.currentItems.count
+        imageView.image = image
+        imageView.isUserInteractionEnabled = true
+        self.thumbnailsView.addSubview(imageView)
 
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onThumbnailTap(_:)))
+        imageView.addGestureRecognizer(tapGesture)
+
+        let diff = self.currentItems.count - self.maxThumbnails
         if diff > 1 {
-            let countLabel = self.thumbnailsView.viewWithTag(self.maxThumbnails + 1) as? UILabel
-            countLabel?.text = "+\(diff)"
+            if let countLabel = self.thumbnailsView.viewWithTag(9999) as? UILabel {
+                countLabel.text = "+\(diff)"
+                self.thumbnailsView.bringSubviewToFront(countLabel)
+            }
         } else if diff == 1 {
             let xLabel = CGFloat((self.maxThumbnails - 1) * 40)
             let countLabel = UILabel(frame: CGRect(x: xLabel, y: 0, width: 36, height: 36))
@@ -66,54 +89,56 @@ extension CameraController {
             countLabel.textColor = .white
             countLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
             countLabel.textAlignment = .center
-            countLabel.layer.borderColor = UIColor.white.withAlphaComponent(0.7).cgColor
-            countLabel.layer.borderWidth = 0.5
             countLabel.layer.cornerRadius = 6
             countLabel.clipsToBounds = true
             countLabel.text = "+1"
-            countLabel.tag = self.maxThumbnails + 1
+            countLabel.tag = 9999
             countLabel.isUserInteractionEnabled = false
             self.thumbnailsView.addSubview(countLabel)
-
-        } else {
-            let xImageView = CGFloat((self.currentItems.count - 1) * 40)
-            let imageView = UIImageView(frame: CGRect(x: xImageView, y: 0, width: 36, height: 36))
-            imageView.layer.cornerRadius = 6
-            imageView.clipsToBounds = true
-            imageView.contentMode = .scaleAspectFill
-            imageView.tag = self.currentItems.count
-            imageView.image = image
-            imageView.isUserInteractionEnabled = true
-            self.thumbnailsView.addSubview(imageView)
-
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onThumbnailTap(_:)))
-            imageView.addGestureRecognizer(tapGesture)
-
+            self.thumbnailsView.bringSubviewToFront(countLabel)
         }
     }
 
     func removeThumbnail() {
+
+        guard let imageView = self.thumbnailsView.viewWithTag(self.currentItems.count + 1) else {
+            return
+        }
+
+        imageView.removeFromSuperview()
+
+        var thumbnailCount = self.currentItems.count
+        if thumbnailCount > self.maxThumbnails {
+            thumbnailCount = self.maxThumbnails
+        }
+
+        let xImageView = CGFloat(thumbnailCount * 40)
+        self.thumbnailsWidth.constant = xImageView - 4
+
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+            self.thumbnailsView.subviews.forEach {
+                if ($0 as? UILabel) == nil {
+                    if $0.tag > self.currentItems.count - self.maxThumbnails + 1 {
+                        var frame = $0.frame
+                        frame.origin.x -= 40
+                        $0.frame = frame
+                    } else if $0.tag == self.currentItems.count - self.maxThumbnails + 1 {
+                        $0.layer.opacity = 1
+                    }
+                }
+            }
+        }
+
         let diff = self.currentItems.count - self.maxThumbnails
 
         if diff > 0 {
-            let countLabel = self.thumbnailsView.viewWithTag(self.maxThumbnails + 1) as? UILabel
+            let countLabel = self.thumbnailsView.viewWithTag(9999) as? UILabel
             countLabel?.text = "+\(diff)"
         } else if diff == 0 {
-            let countLabel = self.thumbnailsView.viewWithTag(self.maxThumbnails + 1)
+            let countLabel = self.thumbnailsView.viewWithTag(9999)
             UIView.animate(withDuration: 0.5) {
                 countLabel?.removeFromSuperview()
-            }
-        } else {
-            guard let imageView = self.thumbnailsView.viewWithTag(self.currentItems.count + 1) else {
-                return
-            }
-
-            let xImageView = CGFloat(self.currentItems.count * 40)
-            self.thumbnailsWidth.constant = xImageView - 4
-
-            UIView.animate(withDuration: 0.5) {
-                self.view.layoutIfNeeded()
-                imageView.removeFromSuperview()
             }
         }
     }

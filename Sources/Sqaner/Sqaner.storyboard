@@ -61,7 +61,7 @@
                                             <action selector="onFlashButtonTap:" destination="exO-qv-uBS" eventType="touchUpInside" id="lMR-D7-Eu9"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPj-sO-EBG">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPj-sO-EBG">
                                         <rect key="frame" x="189" y="4" width="36" height="36"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
