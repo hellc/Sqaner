@@ -37,16 +37,19 @@ public class Sqaner {
         presentingVC.modalPresentationStyle = .fullScreen
 
         if needPreview {
-            cameraStageVC.mode = .scan(completion: { (items) in
+            cameraStageVC.mode = .scan(completion: { (items, page) in
                 Sqaner.preview(
                     items: items,
+                    page: page,
                     rescanEnabled: true,
                     presenter: cameraStageVC,
                     completion: completion
                 )
             })
         } else {
-            cameraStageVC.mode = .scan(completion: completion)
+            cameraStageVC.mode = .scan(completion: { (items, _) in
+                completion(items)
+            })
         }
 
         presenter.present(presentingVC, animated: true) {

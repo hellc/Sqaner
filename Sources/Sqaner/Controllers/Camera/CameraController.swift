@@ -10,7 +10,7 @@ import AVFoundation
 
 // swiftlint:disable multiple_closures_with_trailing_closure
 enum CameraControllerMode {
-    case scan(completion: (_ items: [SqanerItem]) -> Void)
+    case scan(completion: (_ items: [SqanerItem], _ page: Int) -> Void)
     case rescan(_ item: SqanerItem, completion: (_ item: SqanerItem) -> Void)
 }
 
@@ -144,7 +144,7 @@ extension CameraController {
 
     @IBAction func onCompleteButtonTap(_ sender: Any) {
         if case .scan(let completion) = self.mode {
-            completion(self.currentItems)
+            completion(self.currentItems, 0)
         }
     }
 }

@@ -59,9 +59,6 @@ extension CameraController {
         if diff > 1 {
             let countLabel = self.thumbnailsView.viewWithTag(self.maxThumbnails + 1) as? UILabel
             countLabel?.text = "+\(diff)"
-
-            let imageView = self.thumbnailsView.viewWithTag(self.maxThumbnails) as? UIImageView
-            imageView?.image = image
         } else if diff == 1 {
             let xLabel = CGFloat((self.maxThumbnails - 1) * 40)
             let countLabel = UILabel(frame: CGRect(x: xLabel, y: 0, width: 36, height: 36))
@@ -78,8 +75,6 @@ extension CameraController {
             countLabel.isUserInteractionEnabled = false
             self.thumbnailsView.addSubview(countLabel)
 
-            let imageView = self.thumbnailsView.viewWithTag(self.maxThumbnails) as? UIImageView
-            imageView?.image = image
         } else {
             let xImageView = CGFloat((self.currentItems.count - 1) * 40)
             let imageView = UIImageView(frame: CGRect(x: xImageView, y: 0, width: 36, height: 36))
@@ -88,6 +83,7 @@ extension CameraController {
             imageView.contentMode = .scaleAspectFill
             imageView.tag = self.currentItems.count
             imageView.image = image
+            imageView.isUserInteractionEnabled = true
             self.thumbnailsView.addSubview(imageView)
 
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onThumbnailTap(_:)))
@@ -124,5 +120,8 @@ extension CameraController {
 
     @objc func onThumbnailTap(_ gestureRecognizer: UIGestureRecognizer) {
 
+        if case .scan(let completion) = self.mode {
+            completion(self.currentItems, (gestureRecognizer.view?.tag ?? 0) - 1)
+        }
     }
 }
