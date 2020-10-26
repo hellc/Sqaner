@@ -210,7 +210,7 @@ extension CameraController {
         let scaleX = transformFrame.width/self.cropedImageView.frame.width
         let scaleY = transformFrame.height/self.cropedImageView.frame.height
 
-        UIView.animate(withDuration: 0.5, delay: 0, options: .beginFromCurrentState, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState, animations: {
             self.cropedImageView.transform =
                 CGAffineTransform(translationX: endpoint.x, y: endpoint.y).scaledBy(x: scaleX, y: scaleY)
         }) { (_) in

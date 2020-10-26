@@ -46,7 +46,7 @@ extension CameraController {
         let xImageView = CGFloat(thumbnailCount * 40)
         self.thumbnailsWidth.constant = xImageView + 36
 
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.25) {
             self.thumbnailsView.subviews.forEach {
                 if ($0 as? UILabel) == nil {
                     if $0.tag + self.maxThumbnails > self.currentItems.count + 1 {
@@ -71,7 +71,10 @@ extension CameraController {
         imageView.tag = self.currentItems.count
         imageView.image = image
         imageView.isUserInteractionEnabled = true
-        self.thumbnailsView.addSubview(imageView)
+
+        UIView.animate(withDuration: 0.5) {
+            self.thumbnailsView.addSubview(imageView)
+        }
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onThumbnailTap(_:)))
         imageView.addGestureRecognizer(tapGesture)
@@ -105,8 +108,6 @@ extension CameraController {
             return
         }
 
-        imageView.removeFromSuperview()
-
         var thumbnailCount = self.currentItems.count
         if thumbnailCount > self.maxThumbnails {
             thumbnailCount = self.maxThumbnails
@@ -116,6 +117,7 @@ extension CameraController {
         self.thumbnailsWidth.constant = xImageView - 4
 
         UIView.animate(withDuration: 0.5) {
+            imageView.removeFromSuperview()
             self.view.layoutIfNeeded()
             self.thumbnailsView.subviews.forEach {
                 if ($0 as? UILabel) == nil {
