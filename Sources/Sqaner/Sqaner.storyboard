@@ -274,6 +274,13 @@
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="pL2-An-uRZ"/>
+                                            <barButtonItem image="binar" id="Zap-B7-tB8">
+                                                <color key="tintColor" name="primary"/>
+                                                <connections>
+                                                    <action selector="onEnhanceButtonTap:" destination="F8F-yA-QDO" id="f0X-r9-Ot1"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="Y2Q-bf-GNB"/>
                                             <barButtonItem image="rotate-right" id="l9s-T5-9eX">
                                                 <color key="tintColor" name="primary"/>
                                                 <connections>
@@ -843,6 +850,7 @@
         </designable>
     </designables>
     <resources>
+        <image name="binar" width="24" height="24"/>
         <image name="bolt" width="24" height="24"/>
         <image name="bolt-off" width="24" height="24"/>
         <image name="checkmark-round" width="32" height="32"/>

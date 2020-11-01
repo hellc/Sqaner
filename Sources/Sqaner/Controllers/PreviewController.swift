@@ -21,6 +21,8 @@ public class PreviewController: UIViewController {
         }
     }
 
+    var originImages: [Int: UIImage] = [:]
+
     public override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -125,6 +127,39 @@ extension PreviewController {
                 newItem.meta = item.meta
                 newItem.isEdited = true
                 newItem.image = rotatedImage
+
+                DispatchQueue.main.async {
+                    self.currentItems[page] = newItem
+                    self.reload(page: page)
+                }
+            }
+        }
+    }
+
+    @IBAction func onEnhanceButtonTap(_ sender: Any) {
+
+        let page = self.imageViewer.page
+        let item = self.currentItems[page]
+
+        if let originImage = self.originImages[page] {
+            let newItem = SqanerItem(index: item.index, image: originImage)
+            newItem.meta = item.meta
+            newItem.isEdited = true
+            self.currentItems[page] = newItem
+            self.reload(page: page)
+            self.originImages.removeValue(forKey: page)
+            return
+        }
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let ciImage = CIImage(image: item.image) {
+                self.originImages[page] = item.image
+                let cgOrientation = CGImagePropertyOrientation(item.image.imageOrientation)
+                let orientedImage = ciImage.oriented(forExifOrientation: Int32(cgOrientation.rawValue))
+                let enhancedImage = orientedImage.applyingAdaptiveThreshold() ?? UIImage()
+                let newItem = SqanerItem(index: item.index, image: enhancedImage)
+                newItem.meta = item.meta
+                newItem.isEdited = true
 
                 DispatchQueue.main.async {
                     self.currentItems[page] = newItem
