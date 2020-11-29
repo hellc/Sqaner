@@ -45,10 +45,14 @@ class CameraController: UIViewController {
     @IBOutlet var thumbnailsView: UIView!
     @IBOutlet var thumbnailsWidth: NSLayoutConstraint!
 
+    @IBOutlet var interruptionLabel: UILabel!
+
     // MARK: Scan props
 
     let videoPreviewLayer = AVCaptureVideoPreviewLayer()
     var captureSessionManager: CaptureSessionManager?
+
+    private var sessionInterruptedObservers: [NSObjectProtocol] = []
 
     // MARK: Thumbnail props
 
@@ -96,6 +100,8 @@ class CameraController: UIViewController {
         UIApplication.shared.isIdleTimerDisabled = true
 
         self.updateUI()
+
+        self.addObserverForAVCaptureSession()
     }
 
     override func viewDidLayoutSubviews() {
@@ -108,6 +114,10 @@ class CameraController: UIViewController {
         super.viewWillDisappear(animated)
 
         UIApplication.shared.isIdleTimerDisabled = false
+
+        self.sessionInterruptedObservers.forEach {
+            NotificationCenter.default.removeObserver($0)
+        }
 
         self.captureSessionManager?.stop()
         guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
@@ -218,5 +228,45 @@ extension CameraController {
             self.cropedView.isHidden = true
             completion()
         }
+    }
+}
+
+extension CameraController {
+    func addObserverForAVCaptureSession() {
+
+        let mainQueue = OperationQueue.main
+
+        let wasInterruptedObserver = NotificationCenter.default.addObserver(
+            forName: NSNotification.Name.AVCaptureSessionWasInterrupted,
+            object: nil,
+            queue: mainQueue) { notification in
+
+            guard let userInfo = notification.userInfo else { return }
+
+            if let val = (userInfo[AVCaptureSessionInterruptionReasonKey] as? NSNumber)?.intValue,
+               val == AVCaptureSession.InterruptionReason.videoDeviceNotAvailableWithMultipleForegroundApps.rawValue {
+
+                self.interruptionLabel.isHidden = false
+
+                self.descView.isHidden = true
+                self.shootButton.isHidden = true
+                self.flashButton.isHidden = true
+            }
+        }
+        self.sessionInterruptedObservers.append(wasInterruptedObserver)
+
+        let interruptionEndedObserver = NotificationCenter.default.addObserver(
+            forName: NSNotification.Name.AVCaptureSessionInterruptionEnded,
+            object: nil,
+            queue: mainQueue) { _ in
+
+            self.interruptionLabel.isHidden = true
+
+            self.descView.isHidden = false
+            self.shootButton.isHidden = false
+            self.flashButton.isHidden = false
+        }
+        self.sessionInterruptedObservers.append(interruptionEndedObserver)
+
     }
 }

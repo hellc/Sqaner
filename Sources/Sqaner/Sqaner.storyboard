@@ -140,6 +140,12 @@
                                     <action selector="onCompleteButtonTap:" destination="exO-qv-uBS" eventType="touchUpInside" id="zew-VG-zRA"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Съемка документов недоступна в режиме многозадачности." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUm-J1-siA">
+                                <rect key="frame" x="20" y="425.5" width="374" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Qf-SK-u1S">
                                 <rect key="frame" x="76.5" y="732" width="261.5" height="28"/>
                                 <subviews>
@@ -172,6 +178,7 @@
                         <constraints>
                             <constraint firstItem="f6x-sh-gy4" firstAttribute="leading" secondItem="5un-fM-YE6" secondAttribute="leading" id="1N5-iP-9Ae"/>
                             <constraint firstItem="qoz-Sl-pgp" firstAttribute="top" secondItem="5un-fM-YE6" secondAttribute="top" id="2kM-By-vIl"/>
+                            <constraint firstAttribute="trailing" secondItem="FUm-J1-siA" secondAttribute="trailing" constant="20" id="2l5-Ka-6lg"/>
                             <constraint firstItem="pxx-np-Dzt" firstAttribute="top" secondItem="wgT-XO-B2x" secondAttribute="bottom" id="5g8-PC-wyL"/>
                             <constraint firstItem="qoz-Sl-pgp" firstAttribute="leading" secondItem="5un-fM-YE6" secondAttribute="leading" id="7Iq-Hw-YkH"/>
                             <constraint firstItem="KI3-oz-niK" firstAttribute="centerX" secondItem="5un-fM-YE6" secondAttribute="centerX" id="Emc-EO-2Km"/>
@@ -194,9 +201,11 @@
                             <constraint firstItem="n1I-zD-Qi9" firstAttribute="trailing" secondItem="Qx0-Rw-f3H" secondAttribute="trailing" constant="14" id="fjK-ce-7xe"/>
                             <constraint firstItem="KI3-oz-niK" firstAttribute="centerY" secondItem="UgR-25-ZSC" secondAttribute="centerY" id="hgm-ye-tAd"/>
                             <constraint firstItem="KI3-oz-niK" firstAttribute="top" secondItem="0Qf-SK-u1S" secondAttribute="bottom" constant="16" id="kB7-0l-w0a"/>
+                            <constraint firstItem="FUm-J1-siA" firstAttribute="leading" secondItem="5un-fM-YE6" secondAttribute="leading" constant="20" id="oRe-1D-yBD"/>
                             <constraint firstItem="0Qf-SK-u1S" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="n1I-zD-Qi9" secondAttribute="leading" constant="20" id="rYV-Uf-EBV"/>
                             <constraint firstItem="0Qf-SK-u1S" firstAttribute="top" secondItem="d3u-NC-yO3" secondAttribute="bottom" constant="40" id="rgq-Hm-Sno"/>
                             <constraint firstItem="d3u-NC-yO3" firstAttribute="top" secondItem="pxx-np-Dzt" secondAttribute="bottom" constant="40" id="tZ6-1H-8rx"/>
+                            <constraint firstItem="FUm-J1-siA" firstAttribute="centerY" secondItem="5un-fM-YE6" secondAttribute="centerY" id="wJa-Io-Wc5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dhp-uF-1lx"/>
@@ -209,6 +218,7 @@
                         <outlet property="descLabel" destination="yV5-tv-t28" id="fDX-CG-7se"/>
                         <outlet property="descView" destination="0Qf-SK-u1S" id="Pxj-cy-kpG"/>
                         <outlet property="flashButton" destination="Ao3-lf-Sh1" id="mAH-9R-Cc5"/>
+                        <outlet property="interruptionLabel" destination="FUm-J1-siA" id="DZG-8q-pqd"/>
                         <outlet property="previewView" destination="qoz-Sl-pgp" id="jga-Tg-EGn"/>
                         <outlet property="reshootButton" destination="UgR-25-ZSC" id="YeL-1Y-OX0"/>
                         <outlet property="shootButton" destination="KI3-oz-niK" id="I82-pj-JaP"/>
