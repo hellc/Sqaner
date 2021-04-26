@@ -7,9 +7,39 @@
 
 import UIKit
 
+public enum SqanerLocalizationKey: String {
+    case outOf
+    case interruption
+    case focusDocument
+    case focusNextPage
+    case undo
+    case cancel
+    case selectColor
+    case done
+    case reshoot
+}
+
 public class Sqaner {
     static var mainStoryboard: UIStoryboard? {
         return UIStoryboard(name: "Sqaner", bundle: Bundle(for: CameraController.classForCoder()))
+    }
+
+    public static var stringProvider: [SqanerLocalizationKey: String] = [:]
+
+    static func initStringProvider() {
+
+        if Sqaner.stringProvider.count == 0 {
+            Sqaner.stringProvider[.outOf] = "из"
+            Sqaner.stringProvider[.interruption] = "Съемка документов недоступна в режиме многозадачности."
+            Sqaner.stringProvider[.focusDocument] = "Наведите камеру на документ "
+            Sqaner.stringProvider[.focusNextPage] = "Наведите на следующую страницу"
+            Sqaner.stringProvider[.undo] = "Отменить"
+            Sqaner.stringProvider[.cancel] = "Отмена"
+            Sqaner.stringProvider[.selectColor] = "Выбор цвета"
+            Sqaner.stringProvider[.done] = "Готово"
+            Sqaner.stringProvider[.reshoot] = "Переснять"
+        }
+
     }
 
     public static func rescan(item: SqanerItem,
@@ -18,6 +48,9 @@ public class Sqaner {
         guard let storyboard = Sqaner.mainStoryboard,
               let cameraStageVC = storyboard.instantiateViewController(withIdentifier: "cameraStage")
                 as? CameraController else { return }
+
+        Sqaner.initStringProvider()
+
         cameraStageVC.mode = .rescan(item, completion: completion)
 
         let presentingVC = UINavigationController(rootViewController: cameraStageVC)
@@ -32,6 +65,8 @@ public class Sqaner {
         guard let storyboard = Sqaner.mainStoryboard,
               let cameraStageVC = storyboard.instantiateViewController(withIdentifier: "cameraStage")
                 as? CameraController else { return }
+
+        Sqaner.initStringProvider()
 
         let presentingVC = UINavigationController(rootViewController: cameraStageVC)
         presentingVC.modalPresentationStyle = .fullScreen
@@ -67,6 +102,8 @@ public class Sqaner {
               let previewStageVC = storyboard.instantiateViewController(withIdentifier: "previewStage")
                 as? PreviewController else { return }
 
+        Sqaner.initStringProvider()
+
         previewStageVC.prepare(items: items, initialPage: page, rescanEnabled: rescanEnabled, completion: completion)
 
         if modal {
@@ -90,6 +127,8 @@ public class Sqaner {
               let editStageVC = storyboard.instantiateViewController(withIdentifier: "editStage")
                 as? EditController else { return }
 
+        Sqaner.initStringProvider()
+
         editStageVC.prepare(item: item, completion: completion)
 
         let presentingVC = UINavigationController(rootViewController: editStageVC)
@@ -103,6 +142,9 @@ public class Sqaner {
     public static func crop(item: SqanerItem,
                             presenter: UIViewController,
                             completion: @escaping (_ item: SqanerItem) -> Void) {
+
+        Sqaner.initStringProvider()
+
         let cropStageVC = CropController(item: item, completion: completion)
 
         let presentingVC = UINavigationController(rootViewController: cropStageVC)

@@ -86,7 +86,7 @@ final class CropController: UIViewController {
 
     private lazy var nextButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
-            title: "Готово", style: .done, target: self, action: #selector(self.onDoneButtonTap)
+            title: Sqaner.stringProvider[.done], style: .done, target: self, action: #selector(self.onDoneButtonTap)
         )
         button.tintColor = navigationController?.navigationBar.tintColor
         return button
@@ -94,7 +94,10 @@ final class CropController: UIViewController {
 
     private lazy var cancelButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
-            title: "Отмена", style: .plain, target: self, action: #selector(self.onCancelButtonTap)
+            title: Sqaner.stringProvider[.cancel],
+            style: .plain,
+            target: self,
+            action: #selector(self.onCancelButtonTap)
         )
         button.tintColor = navigationController?.navigationBar.tintColor
         return button

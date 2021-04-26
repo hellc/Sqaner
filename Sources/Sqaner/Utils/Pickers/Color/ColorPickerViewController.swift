@@ -18,7 +18,7 @@ extension UIAlertController {
                 as? ColorPickerViewController else { return }
         set(vc: vc)
 
-        set(title: "Выбор цвета", font: .systemFont(ofSize: 13), color: .gray)
+        set(title: Sqaner.stringProvider[.selectColor], font: .systemFont(ofSize: 13), color: .gray)
 
         vc.set(color: color) { new in
             color = new
@@ -39,7 +39,7 @@ extension UIAlertController {
                 as? PalletePickerViewController else { return }
         set(vc: vc)
 
-        set(title: "Выбор цвета", font: .systemFont(ofSize: 13), color: .gray)
+        set(title: Sqaner.stringProvider[.selectColor], font: .systemFont(ofSize: 13), color: .gray)
 
         vc.set(selected: index, selection: selection)
     }
@@ -86,7 +86,7 @@ extension UIAlertController {
     ///   - isEnabled: isEnabled status for action (default is true)
     ///   - handler: optional action handler to be called when button is tapped (default is nil)
     func addAction(image: UIImage? = nil,
-                   title: String, color: UIColor? = nil,
+                   title: String?, color: UIColor? = nil,
                    style: UIAlertAction.Style = .default,
                    isEnabled: Bool = true,
                    handler: ((UIAlertAction) -> Void)? = nil) {

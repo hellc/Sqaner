@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -360,6 +360,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="doneButton" destination="GsJ-sb-27c" id="uiM-PA-7tE"/>
                         <outlet property="imageViewer" destination="qgs-wR-E5k" id="XFc-g7-bsH"/>
                         <outlet property="toolbar" destination="5vC-PC-Cwn" id="jde-78-lq1"/>
                     </connections>
@@ -466,7 +467,9 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="cancelButtonItem" destination="1Oq-GN-XQA" id="IRQ-Na-2Si"/>
                         <outlet property="currentColorView" destination="276-VX-LgH" id="tGt-AX-RHu"/>
+                        <outlet property="doneButtonItem" destination="Pxc-HM-TUt" id="H5Y-Yo-B0T"/>
                         <outlet property="imageViewerItem" destination="X2r-MW-Ckj" id="G16-vd-TTO"/>
                         <outlet property="redoButtonItem" destination="fI5-Iz-NZ8" id="8Ha-m5-jbQ"/>
                         <outlet property="toolbar" destination="lVa-ac-0TX" id="Ixo-MY-W0v"/>

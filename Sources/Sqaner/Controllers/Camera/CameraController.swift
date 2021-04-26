@@ -81,6 +81,9 @@ class CameraController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.interruptionLabel.text = Sqaner.stringProvider[.interruption]
+        self.completeButton.setTitle(Sqaner.stringProvider[.done], for: .normal)
+
         self.prepareScan()
         self.prepareThumbnails()
 
@@ -172,10 +175,10 @@ extension CameraController {
 
         self.view.layoutIfNeeded()
 
-        self.showDesc(text: count == 0 ? "Наведите камеру на документ" : "Наведите на следующую страницу")
+        self.showDesc(text: count == 0 ? Sqaner.stringProvider[.focusDocument] : Sqaner.stringProvider[.focusNextPage])
     }
 
-    func showDesc(text: String) {
+    func showDesc(text: String?) {
         if let timer = descTimer {
             timer.invalidate()
         }

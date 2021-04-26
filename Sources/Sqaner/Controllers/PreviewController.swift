@@ -14,6 +14,7 @@ public class PreviewController: UIViewController {
 
     @IBOutlet public weak var imageViewer: ImageViewer!
     @IBOutlet public weak var toolbar: UIToolbar!
+    @IBOutlet public weak var doneButton: UIButton!
 
     var currentItems: [SqanerItem] = [] {
         didSet {
@@ -30,7 +31,10 @@ public class PreviewController: UIViewController {
 
         if self.rescanEnabled {
             let rescanBarButton = UIBarButtonItem(
-                title: "Переснять", style: .plain, target: self, action: #selector(onRescanButtonTap)
+                title: Sqaner.stringProvider[.reshoot],
+                style: .plain,
+                target: self,
+                action: #selector(onRescanButtonTap)
             )
 
             self.navigationItem.rightBarButtonItems = [rescanBarButton]
@@ -51,6 +55,8 @@ public class PreviewController: UIViewController {
         } else {
             self.navigationItem.leftBarButtonItem = nil
         }
+
+        self.doneButton.setTitle(Sqaner.stringProvider[.done], for: .normal)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -76,7 +82,7 @@ public class PreviewController: UIViewController {
     private func updateUI() {
         if self.imageViewer != nil {
             let page = self.imageViewer.page
-            self.navigationItem.title = "\(page + 1) из \(self.currentItems.count)"
+            self.navigationItem.title = "\(page + 1) \(Sqaner.stringProvider[.outOf] ?? "") \(self.currentItems.count)"
         }
     }
 }

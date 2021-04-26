@@ -23,6 +23,9 @@ public class EditController: UIViewController {
     @IBOutlet public weak var redoButtonItem: UIBarButtonItem!
     @IBOutlet public weak var colorButtonItem: UIBarButtonItem!
 
+    @IBOutlet public weak var cancelButtonItem: UIBarButtonItem!
+    @IBOutlet public weak var doneButtonItem: UIBarButtonItem!
+
     private var image: UIImage!
     private var currentItem: SqanerItem! {
         didSet {
@@ -64,6 +67,9 @@ public class EditController: UIViewController {
         self.rectusView.didUndo = { _ in
             self.updateUI()
         }
+
+        self.cancelButtonItem.title = Sqaner.stringProvider[.undo]
+        self.doneButtonItem.title = Sqaner.stringProvider[.done]
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -146,7 +152,7 @@ extension EditController {
             alert.dismiss(animated: true)
         }
 
-        alert.addAction(title: "Отмена", style: .cancel) { (_) in
+        alert.addAction(title: Sqaner.stringProvider[.cancel], style: .cancel) { (_) in
         }
 
         self.present(alert, animated: true, completion: nil)
