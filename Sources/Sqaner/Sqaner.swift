@@ -27,7 +27,6 @@ public class Sqaner {
     }
 
     public static func scan(presenter: UIViewController,
-                            needPreview: Bool = true,
                             completion: @escaping (_ items: [SqanerItem]) -> Void = { _ in }) {
         guard let storyboard = Sqaner.mainStoryboard,
               let cameraStageVC = storyboard.instantiateViewController(withIdentifier: "cameraStage")
@@ -36,22 +35,12 @@ public class Sqaner {
         let presentingVC = UINavigationController(rootViewController: cameraStageVC)
         presentingVC.modalPresentationStyle = .fullScreen
 
-        if needPreview {
-            cameraStageVC.mode = .scan(completion: { (items) in
-                Sqaner.preview(
-                    items: items,
-                    rescanEnabled: true,
-                    presenter: cameraStageVC,
-                    completion: completion
-                )
-            })
-        } else {
-            cameraStageVC.mode = .scan(completion: { items in
-                cameraStageVC.dismiss(animated: true) {
-                    completion(items)
-                }
-            })
-        }
+        
+        cameraStageVC.mode = .scan(completion: { items in
+            cameraStageVC.dismiss(animated: true) {
+                completion(items)
+            }
+        })
 
         presenter.present(presentingVC, animated: true) {
             Sqaner.scanDidShown(cameraStageVC)

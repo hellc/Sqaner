@@ -39,11 +39,10 @@ class CameraController: UIViewController {
     @IBOutlet var descLabel: UILabel!
 
     @IBOutlet var leftView: UIView!
+    @IBOutlet var leftPreImageView: UIImageView!
     @IBOutlet var leftImageView: UIImageView!
 
     @IBOutlet var rightView: UIView!
-    @IBOutlet var rightPreImageView: UIImageView!
-    @IBOutlet var rightImageView: UIImageView!
     @IBOutlet var rightDescView: UIView!
     @IBOutlet var rightDescLabel: UILabel!
 
@@ -80,9 +79,7 @@ class CameraController: UIViewController {
         let borderColor = UIColor(red: 218/255, green: 218/255, blue: 222/255, alpha: 1.0)
 
         self.updateBorder(view: self.leftImageView, color: borderColor, width: 0.5)
-        self.updateBorder(view: self.rightImageView, color: borderColor, width: 0.5)
-        self.updateBorder(view: self.rightPreImageView, color: borderColor, width: 0.5)
-        self.updateBorder(view: self.rightDescView, color: borderColor, width: 0.5)
+        self.updateBorder(view: self.leftPreImageView, color: borderColor, width: 0.5)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -136,12 +133,19 @@ extension CameraController {
         self.toggleFlash()
     }
 
-    @IBAction func onReshootButtonTap(_ sender: Any) {
-        self.currentItems.removeLast()
-    }
-
     @IBAction func onShootButtonTap(_ sender: Any) {
         self.proceedScan()
+    }
+    
+    @IBAction func onPreviewButtonTap(_ sender: Any) {
+        if case .scan(let completion) = self.mode {
+            Sqaner.preview(
+                items: self.currentItems,
+                rescanEnabled: true,
+                presenter: self,
+                completion: completion
+            )
+        }
     }
 
     @IBAction func onCompleteButtonTap(_ sender: Any) {
@@ -165,19 +169,18 @@ extension CameraController {
 
         if count > 0 {
             self.leftImageView.image = items.last?.image
-            self.rightImageView.image = items.last?.image
 
             if count > 1 {
-                self.rightPreImageView.isHidden = false
-                self.rightPreImageView.image = items[count - 2].image
+                self.leftPreImageView.isHidden = false
+                self.leftPreImageView.image = items[count - 2].image
                 self.rightDescLabel.text = String(count)
             } else {
-                self.rightPreImageView.isHidden = true
+                self.leftPreImageView.isHidden = true
             }
         }
         self.view.layoutIfNeeded()
 
-        self.showDesc(text: count == 0 ? "Наведите камеру на документ" : "Наведите на следующую страницу")
+        self.showDesc(text: count == 0 ? "Сфотографируйте документ" : "Сфотографируйте следующую страницу")
     }
 
     func showDesc(text: String) {
@@ -211,9 +214,10 @@ extension CameraController {
     }
 
     func hideCropedImage(completion: @escaping (() -> Void)) {
-        let endpoint = self.rightView.frame.origin
+        let endpoint = self.leftView.frame.origin
 
-        UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState,
+                       animations: {
             self.cropedView.layer.opacity = 0
             self.cropedImageView.transform =
                 CGAffineTransform(translationX: endpoint.x, y: endpoint.y).scaledBy(x: 0.05, y: 0.05)

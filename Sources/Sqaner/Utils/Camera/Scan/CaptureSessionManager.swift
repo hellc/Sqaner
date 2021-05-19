@@ -140,7 +140,7 @@ final class CaptureSessionManager: NSObject, AVCaptureVideoDataOutputSampleBuffe
             DispatchQueue.main.async {
                 self.captureSession.startRunning()
             }
-            isDetecting = true
+            isDetecting = false
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (_) in
                 DispatchQueue.main.async { [weak self] in
@@ -336,17 +336,17 @@ extension CaptureSessionManager: AVCapturePhotoCaptureDelegate {
                 break
             }
 
-            var quad: Quadrilateral?
-            if let displayedRectangleResult = self?.displayedRectangleResult {
-                quad = self?.displayRectangleResult(rectangleResult: displayedRectangleResult)
-                quad = quad?.scale(displayedRectangleResult.imageSize, image.size, withRotationAngle: angle)
-            }
+//            var quad: Quadrilateral?
+//            if let displayedRectangleResult = self?.displayedRectangleResult {
+//                quad = self?.displayRectangleResult(rectangleResult: displayedRectangleResult)
+//                quad = quad?.scale(displayedRectangleResult.imageSize, image.size, withRotationAngle: angle)
+//            }
 
             DispatchQueue.main.async {
                 guard let strongSelf = self else {
                     return
                 }
-                strongSelf.delegate?.captureSessionManager(strongSelf, didCapturePicture: image, withQuad: quad)
+                strongSelf.delegate?.captureSessionManager(strongSelf, didCapturePicture: image, withQuad: nil)//quad)
             }
         }
     }
