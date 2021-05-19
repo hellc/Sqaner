@@ -73,7 +73,7 @@ class RectusView: UIView {
             con.setStrokeColor(UIColor.clear.cgColor)
             con.setFillColor(self.fillColor.cgColor)
 
-            //user is still drawing
+            // user is still drawing
             if self.tempPointStart.x != self.tempPointEnd.x || self.tempPointStart.y != self.tempPointEnd.y {
                 for rect in self.rectangles {
                     con.addRect(rect)

@@ -118,7 +118,7 @@ final class CropController: UIViewController {
         self.completion = completion
         self.image = item.image
         self.quad = CropController.defaultQuad(forImage: self.image)
-        //item.quad ?? CropController.defaultQuad(forImage: item.image)
+        // item.quad ?? CropController.defaultQuad(forImage: item.image)
         super.init(nibName: nil, bundle: nil)
     }
 

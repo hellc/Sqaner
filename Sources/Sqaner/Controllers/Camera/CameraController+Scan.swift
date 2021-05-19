@@ -9,7 +9,6 @@ import UIKit
 
 // MARK: Scan setup
 
-// swiftlint:disable multiple_closures_with_trailing_closure
 extension CameraController {
     func prepareScan() {
         self.cropedView.isHidden = true

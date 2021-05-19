@@ -17,7 +17,7 @@ import UIKit
     static var defaultThumbSize: CGFloat = 28.0
 
     // MARK: Properties
-    //Uses saturation & lightness from minColor
+    // Uses saturation & lightness from minColor
     @IBInspectable var hasRainbow: Bool  = false { didSet {updateTrackColors()} }
     @IBInspectable var minColor: UIColor = UIColor.blue {didSet {updateTrackColors()}}
     @IBInspectable var maxColor: UIColor = UIColor.orange {didSet {updateTrackColors()}}
@@ -81,7 +81,7 @@ import UIKit
     var continuous: Bool = true
     // if set, value change events are generated any time the value changes due to dragging. default = YES
 
-    var actionBlock: (GradientSlider, CGFloat) -> Void = { slider, newValue in  }
+    var actionBlock: (GradientSlider, CGFloat) -> Void = { _, _ in  }
 
     @IBInspectable var thickness: CGFloat = defaultThickness {
         didSet {
@@ -91,23 +91,23 @@ import UIKit
     }
 
     var trackBorderColor: UIColor? {
-        set {
-            _trackLayer.borderColor = newValue?.cgColor
-        }
         get {
             if let color = _trackLayer.borderColor {
                 return UIColor(cgColor: color)
             }
             return nil
         }
+        set {
+            _trackLayer.borderColor = newValue?.cgColor
+        }
     }
 
     var trackBorderWidth: CGFloat {
-        set {
-            _trackLayer.borderWidth = newValue
-        }
         get {
             return _trackLayer.borderWidth
+        }
+        set {
+            _trackLayer.borderWidth = newValue
         }
     }
 
@@ -274,7 +274,7 @@ import UIKit
         _thumbLayer.addSublayer(_thumbIconLayer)
 
         // instead of method - layoutSublayersOfLayer
-        //needsDisplayOnBoundsChange = true
+        // needsDisplayOnBoundsChange = true
     }
 
     // MARK: - Layout
@@ -379,7 +379,7 @@ import UIKit
         let left = _trackLayer.position.x - trackWidth/2.0
 
         if !animated {
-            CATransaction.begin() //Move the thumb position without animations
+            CATransaction.begin() // Move the thumb position without animations
             CATransaction.setValue(true, forKey: kCATransactionDisableActions)
             _thumbLayer.position = CGPoint(x: left + (trackWidth * perc), y: halfHeight)
             CATransaction.commit()
@@ -420,7 +420,7 @@ import UIKit
             _trackLayer.locations = [0.0, 1.0]
             return
         }
-        //Otherwise make a rainbow with the saturation & lightness of the min color
+        // Otherwise make a rainbow with the saturation & lightness of the min color
         var h: CGFloat = 0.0
         var s: CGFloat = 0.0
         var l: CGFloat = 0.0

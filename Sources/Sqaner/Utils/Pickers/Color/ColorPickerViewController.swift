@@ -113,9 +113,9 @@ extension UIAlertController {
     ///   - vibrate: set true to vibrate the device while presenting the alert (default is false).
     ///   - completion: an optional completion handler to be called after presenting alert controller (default is nil).
     func show(animated: Bool = true,
-                     vibrate: Bool = false,
-                     style: UIBlurEffect.Style? = nil,
-                     completion: (() -> Void)? = nil) {
+              vibrate: Bool = false,
+              style: UIBlurEffect.Style? = nil,
+              completion: (() -> Void)? = nil) {
         if let style = style {
             for subview in view.allSubViewsOf(type: UIVisualEffectView.self) {
                 subview.effect = UIBlurEffect(style: style)
@@ -147,7 +147,7 @@ extension UIAlertController {
         let isPad: Bool = UIDevice.current.userInterfaceIdiom == .pad
         let root = UIApplication.shared.keyWindow?.rootViewController?.view
 
-        //self.responds(to: #selector(getter: popoverPresentationController))
+        // self.responds(to: #selector(getter: popoverPresentationController))
         if let source = source {
             popoverPresentationController?.sourceView = source
             popoverPresentationController?.sourceRect = source.bounds
@@ -155,7 +155,7 @@ extension UIAlertController {
             popoverPresentationController?.sourceView = source
             popoverPresentationController?.sourceRect =
                 CGRect(x: source.bounds.midX, y: source.bounds.midY, width: 0, height: 0)
-            //popoverPresentationController?.permittedArrowDirections = .down
+            // popoverPresentationController?.permittedArrowDirections = .down
             popoverPresentationController?.permittedArrowDirections = .init(rawValue: 0)
         }
 
@@ -255,7 +255,7 @@ class ColorPickerViewController: UIViewController {
         brightnessSlider.minColor = .black
         hueSlider.hasRainbow = true
 
-        hueSlider.actionBlock = { [unowned self] slider, newValue in
+        hueSlider.actionBlock = { [unowned self] _, newValue in
             CATransaction.begin()
             CATransaction.setValue(true, forKey: kCATransactionDisableActions)
 
@@ -275,7 +275,7 @@ class ColorPickerViewController: UIViewController {
             CATransaction.commit()
         }
 
-        brightnessSlider.actionBlock = { [unowned self] slider, newValue in
+        brightnessSlider.actionBlock = { [unowned self] _, newValue in
             CATransaction.begin()
             CATransaction.setValue(true, forKey: kCATransactionDisableActions)
 
@@ -285,7 +285,7 @@ class ColorPickerViewController: UIViewController {
             CATransaction.commit()
         }
 
-        saturationSlider.actionBlock = { [unowned self] slider, newValue in
+        saturationSlider.actionBlock = { [unowned self] _, newValue in
             CATransaction.begin()
             CATransaction.setValue(true, forKey: kCATransactionDisableActions)
 

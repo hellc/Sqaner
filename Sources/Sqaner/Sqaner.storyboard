@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -595,7 +595,7 @@
                                         <rect key="frame" x="0.0" y="158" width="350" height="148"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5t-Ld-GRQ" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="-2" y="-4" width="354" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="oxm-Yz-QkL"/>
                                                 </constraints>
@@ -615,7 +615,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qwW-5e-OyR" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="-2" y="52" width="354" height="44"/>
+                                                <rect key="frame" x="0.0" y="56" width="350" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="Ole-nN-4sn"/>
                                                 </constraints>
@@ -636,7 +636,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pt-Eq-7RL" customClass="GradientSlider" customModule="Sqaner" customModuleProvider="target">
-                                                <rect key="frame" x="-2" y="108" width="354" height="44"/>
+                                                <rect key="frame" x="0.0" y="112" width="350" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="fVR-T7-DTb"/>
                                                 </constraints>

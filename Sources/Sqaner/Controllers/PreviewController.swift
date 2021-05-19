@@ -36,7 +36,7 @@ public class PreviewController: UIViewController {
             self.navigationItem.rightBarButtonItems = []
         }
 
-        self.imageViewer.pageUpdated = { page in
+        self.imageViewer.pageUpdated = { _ in
             self.updateUI()
         }
 
