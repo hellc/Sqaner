@@ -17,7 +17,6 @@ class ViewController: UIViewController {
 
     @IBAction func onStartScanningTap(_ sender: Any) {
         Sqaner.scan(presenter: self, needPreview: true) { (_) in
-
         }
     }
 }

@@ -46,7 +46,11 @@ public class Sqaner {
                 )
             })
         } else {
-            cameraStageVC.mode = .scan(completion: completion)
+            cameraStageVC.mode = .scan(completion: { items in
+                cameraStageVC.dismiss(animated: true) {
+                    completion(items)
+                }
+            })
         }
 
         presenter.present(presentingVC, animated: true) {
