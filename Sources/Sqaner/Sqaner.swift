@@ -68,7 +68,7 @@ public class Sqaner {
               let previewStageVC = storyboard.instantiateViewController(withIdentifier: "previewStage")
                 as? PreviewController else { return }
 
-        previewStageVC.prepare(items: items, initialPage: page, rescanEnabled: rescanEnabled, completion: completion)
+        previewStageVC.prepare(items: items, initialPage: page, completion: completion)
 
         if modal {
             let presentingVC = UINavigationController(rootViewController: previewStageVC)
@@ -84,36 +84,6 @@ public class Sqaner {
         }
     }
 
-    public static func edit(item: SqanerItem,
-                            presenter: UIViewController,
-                            completion: @escaping (_ item: SqanerItem) -> Void = { _ in }) {
-        guard let storyboard = Sqaner.mainStoryboard,
-              let editStageVC = storyboard.instantiateViewController(withIdentifier: "editStage")
-                as? EditController else { return }
-
-        editStageVC.prepare(item: item, completion: completion)
-
-        let presentingVC = UINavigationController(rootViewController: editStageVC)
-        presentingVC.modalPresentationStyle = .fullScreen
-
-        presenter.present(presentingVC, animated: true) {
-            Sqaner.editDidShown(editStageVC)
-        }
-    }
-
-    public static func crop(item: SqanerItem,
-                            presenter: UIViewController,
-                            completion: @escaping (_ item: SqanerItem) -> Void) {
-        let cropStageVC = CropController(item: item, completion: completion)
-
-        let presentingVC = UINavigationController(rootViewController: cropStageVC)
-        presentingVC.modalPresentationStyle = .fullScreen
-
-        presenter.present(presentingVC, animated: true) {
-            Sqaner.cropDidShown(cropStageVC)
-        }
-    }
-
     public static var cameraDidStart: (() -> Void) = {}
     public static var cameraDidCancel: (() -> Void) = {}
     public static var cameraDidReshoot: (() -> Void) = {}
@@ -122,6 +92,4 @@ public class Sqaner {
 
     public static var scanDidShown: ((_ controller: UIViewController) -> Void) = { _ in }
     public static var previewDidShown: ((_ controller: UIViewController) -> Void) = { _ in }
-    public static var editDidShown: ((_ controller: UIViewController) -> Void) = { _ in }
-    public static var cropDidShown: ((_ controller: UIViewController) -> Void) = { _ in }
 }
