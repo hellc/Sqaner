@@ -7,6 +7,26 @@
 
 import UIKit
 
+public class NavigationController: UINavigationController {
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+    }
+    
+    public override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
+    public override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .portrait
+    }
+}
+
 public class Sqaner {
     static var mainStoryboard: UIStoryboard? {
         return UIStoryboard(name: "Sqaner", bundle: Bundle(for: CameraController.classForCoder()))
@@ -20,7 +40,7 @@ public class Sqaner {
                 as? CameraController else { return }
         cameraStageVC.mode = .rescan(item, completion: completion)
 
-        let presentingVC = UINavigationController(rootViewController: cameraStageVC)
+        let presentingVC = NavigationController(rootViewController: cameraStageVC)
         presentingVC.modalPresentationStyle = .fullScreen
 
         presenter.present(presentingVC, animated: true, completion: nil)
@@ -32,7 +52,7 @@ public class Sqaner {
               let cameraStageVC = storyboard.instantiateViewController(withIdentifier: "cameraStage")
                 as? CameraController else { return }
 
-        let presentingVC = UINavigationController(rootViewController: cameraStageVC)
+        let presentingVC = NavigationController(rootViewController: cameraStageVC)
         presentingVC.modalPresentationStyle = .fullScreen
 
         
@@ -60,7 +80,7 @@ public class Sqaner {
         previewStageVC.prepare(items: items, initialPage: page, completion: completion)
 
         if modal {
-            let presentingVC = UINavigationController(rootViewController: previewStageVC)
+            let presentingVC = NavigationController(rootViewController: previewStageVC)
             presentingVC.modalPresentationStyle = .fullScreen
             presenter.present(presentingVC, animated: true) {
                 Sqaner.previewDidShown(previewStageVC)
