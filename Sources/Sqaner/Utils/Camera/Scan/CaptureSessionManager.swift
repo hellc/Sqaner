@@ -314,7 +314,7 @@ extension CaptureSessionManager: AVCapturePhotoCaptureDelegate {
     private func completeImageCapture(with imageData: Data) {
         DispatchQueue.global(qos: .background).async { [weak self] in
             CaptureSession.current.isEditing = true
-            guard let image = UIImage(data: imageData) else {
+            guard var image = UIImage(data: imageData) else {
                 let error = ImageScannerControllerError.capture
                 DispatchQueue.main.async {
                     guard let strongSelf = self else {
@@ -325,22 +325,23 @@ extension CaptureSessionManager: AVCapturePhotoCaptureDelegate {
                 return
             }
 
-            var angle: CGFloat = 0.0
-
-            switch image.imageOrientation {
-            case .right:
-                angle = CGFloat.pi / 2
-            case .up:
-                angle = CGFloat.pi
-            default:
-                break
-            }
-
+//            var angle: CGFloat = 0.0
+//
+//            switch image.imageOrientation {
+//            case .right:
+//                angle = CGFloat.pi / 2
+//            case .up:
+//                angle = CGFloat.pi
+//            default:
+//                break
+//            }
 //            var quad: Quadrilateral?
 //            if let displayedRectangleResult = self?.displayedRectangleResult {
 //                quad = self?.displayRectangleResult(rectangleResult: displayedRectangleResult)
 //                quad = quad?.scale(displayedRectangleResult.imageSize, image.size, withRotationAngle: angle)
 //            }
+            
+            image = image.rotate(radians: (2 * CGFloat.pi))
 
             DispatchQueue.main.async {
                 guard let strongSelf = self else {
@@ -361,4 +362,29 @@ private struct RectangleDetectorResult {
     /// The size of the image the quadrilateral was detected on.
     let imageSize: CGSize
 
+}
+
+import UIKit
+
+extension UIImage {
+    func rotate(radians: CGFloat) -> UIImage {
+        let rotatedSize = CGRect(origin: .zero, size: size)
+            .applying(CGAffineTransform(rotationAngle: CGFloat(radians)))
+            .integral.size
+        UIGraphicsBeginImageContext(rotatedSize)
+        if let context = UIGraphicsGetCurrentContext() {
+            let origin = CGPoint(x: rotatedSize.width / 2.0,
+                                 y: rotatedSize.height / 2.0)
+            context.translateBy(x: origin.x, y: origin.y)
+            context.rotate(by: radians)
+            draw(in: CGRect(x: -origin.y, y: -origin.x,
+                            width: size.width, height: size.height))
+            let rotatedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+
+            return rotatedImage ?? self
+        }
+
+        return self
+    }
 }
