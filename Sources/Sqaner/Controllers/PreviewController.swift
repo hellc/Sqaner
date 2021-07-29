@@ -64,7 +64,7 @@ public class PreviewController: UIViewController {
         }
 
         self.doneButton.setTitle(Sqaner.stringProvider[.done], for: .normal)
-        self.doneButton.tintColor = Sqaner.tintColor
+        self.doneButton.setTitleColor(Sqaner.tintColor, for: .normal)
 
         self.closeBarButton.tintColor = Sqaner.tintColor
         self.fillBarButton.tintColor = Sqaner.tintColor
