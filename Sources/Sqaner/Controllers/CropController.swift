@@ -88,7 +88,7 @@ final class CropController: UIViewController {
         let button = UIBarButtonItem(
             title: Sqaner.stringProvider[.done], style: .done, target: self, action: #selector(self.onDoneButtonTap)
         )
-        button.tintColor = navigationController?.navigationBar.tintColor
+        button.tintColor = Sqaner.tintColor
         return button
     }()
 
@@ -99,7 +99,7 @@ final class CropController: UIViewController {
             target: self,
             action: #selector(self.onCancelButtonTap)
         )
-        button.tintColor = navigationController?.navigationBar.tintColor
+        button.tintColor = Sqaner.tintColor
         return button
     }()
 

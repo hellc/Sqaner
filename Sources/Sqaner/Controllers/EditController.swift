@@ -70,6 +70,11 @@ public class EditController: UIViewController {
 
         self.cancelButtonItem.title = Sqaner.stringProvider[.undo]
         self.doneButtonItem.title = Sqaner.stringProvider[.done]
+
+        self.undoButtonItem.tintColor = Sqaner.tintColor
+        self.redoButtonItem.tintColor = Sqaner.tintColor
+        self.cancelButtonItem.tintColor = Sqaner.tintColor
+        self.doneButtonItem.tintColor = Sqaner.tintColor
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -143,6 +148,7 @@ extension EditController {
 //            currentColor = color
 //        }
 
+        alert.view.tintColor = Sqaner.tintColor
         alert.addPalleteColorPicker(selected: self.currentSelectedColor) { (color, newIndex) in
 
             self.currentSelectedColor = newIndex

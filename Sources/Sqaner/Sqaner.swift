@@ -26,6 +26,8 @@ public class Sqaner {
 
     public static var stringProvider: [SqanerLocalizationKey: String] = [:]
 
+    public static var tintColor: UIColor = .blue
+
     static func initStringProvider() {
 
         if Sqaner.stringProvider.count == 0 {

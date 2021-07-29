@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -360,8 +360,14 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="closeBarButton" destination="kvz-tc-ZEX" id="GDS-kj-8kL"/>
+                        <outlet property="cropBarButton" destination="nGM-86-XRb" id="HEs-I5-u4Y"/>
+                        <outlet property="deleteBarButton" destination="CDj-GU-A3A" id="ilm-v6-WlK"/>
                         <outlet property="doneButton" destination="GsJ-sb-27c" id="uiM-PA-7tE"/>
+                        <outlet property="enhanceBarButton" destination="Zap-B7-tB8" id="ccf-AK-1Xa"/>
+                        <outlet property="fillBarButton" destination="Del-kX-7Us" id="V8M-hY-4wb"/>
                         <outlet property="imageViewer" destination="qgs-wR-E5k" id="XFc-g7-bsH"/>
+                        <outlet property="rotateBarButton" destination="l9s-T5-9eX" id="nZB-BK-H2m"/>
                         <outlet property="toolbar" destination="5vC-PC-Cwn" id="jde-78-lq1"/>
                     </connections>
                 </viewController>

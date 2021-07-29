@@ -15,6 +15,12 @@ public class PreviewController: UIViewController {
     @IBOutlet public weak var imageViewer: ImageViewer!
     @IBOutlet public weak var toolbar: UIToolbar!
     @IBOutlet public weak var doneButton: UIButton!
+    @IBOutlet private weak var closeBarButton: UIBarButtonItem!
+    @IBOutlet private weak var fillBarButton: UIBarButtonItem!
+    @IBOutlet private weak var cropBarButton: UIBarButtonItem!
+    @IBOutlet private weak var rotateBarButton: UIBarButtonItem!
+    @IBOutlet private weak var enhanceBarButton: UIBarButtonItem!
+    @IBOutlet private weak var deleteBarButton: UIBarButtonItem!
 
     var currentItems: [SqanerItem] = [] {
         didSet {
@@ -36,6 +42,7 @@ public class PreviewController: UIViewController {
                 target: self,
                 action: #selector(onRescanButtonTap)
             )
+            rescanBarButton.tintColor = Sqaner.tintColor
 
             self.navigationItem.rightBarButtonItems = [rescanBarButton]
         } else {
@@ -57,6 +64,14 @@ public class PreviewController: UIViewController {
         }
 
         self.doneButton.setTitle(Sqaner.stringProvider[.done], for: .normal)
+        self.doneButton.tintColor = Sqaner.tintColor
+
+        self.closeBarButton.tintColor = Sqaner.tintColor
+        self.fillBarButton.tintColor = Sqaner.tintColor
+        self.cropBarButton.tintColor = Sqaner.tintColor
+        self.rotateBarButton.tintColor = Sqaner.tintColor
+        self.enhanceBarButton.tintColor = Sqaner.tintColor
+        self.deleteBarButton.tintColor = Sqaner.tintColor
     }
 
     public override func viewWillAppear(_ animated: Bool) {
